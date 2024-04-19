@@ -1,0 +1,31 @@
+package fr.uga.l3miage.integrator.models;
+
+import fr.uga.l3miage.integrator.enums.Emploi;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class EmployeEntity {
+    @Id
+    private String trigramme;
+    private String email;
+    private String prenom;
+    private String nom;
+    private String photo;
+    private String telephone;
+    @Enumerated(EnumType.STRING)
+    private Emploi emploi;
+
+    @ManyToMany
+    private Collection<TourneeEntity> tourneeEntities=new ArrayList<>();
+    @OneToOne
+    private EntrepotEntity entrepotEntity;
+}
