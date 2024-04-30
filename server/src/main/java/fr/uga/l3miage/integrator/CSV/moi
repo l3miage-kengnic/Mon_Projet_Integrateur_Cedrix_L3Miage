@@ -1,0 +1,5 @@
+L'architecture suit une structure de couches où chaque partie a un rôle spécifique.
+EmployeEndPoints définit les opérations d'API, EmployeController gère les requêtes du client,
+EmployeService implémente la logique métier, EmployeComponent gère l'accès aux données,
+et EmployeRepository interagit directement avec la base de données. Les données sont renvoyées au client sous forme de EmployeResponseDTO,
+assurant une séparation des préoccupations et une architecture modulaire.

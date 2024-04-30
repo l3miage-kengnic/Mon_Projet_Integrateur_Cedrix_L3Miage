@@ -1,9 +1,7 @@
 package fr.uga.l3miage.integrator.models;
 
 import fr.uga.l3miage.integrator.enums.Emploi;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,6 +11,9 @@ import java.util.Collection;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@Getter
+@Setter
 public class EmployeEntity {
     @Id
     private String trigramme;
