@@ -14,6 +14,7 @@ import java.util.Collection;
 @Builder
 @Getter
 @Setter
+@Table
 public class EmployeEntity {
     @Id
     private String trigramme;

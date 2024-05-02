@@ -6,19 +6,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table
 public class EntrepotEntity {
-    @Id
-    private String id;
+    @Id //@GeneratedValue(strategy = GenerationType.IDENTITY)  //ca me donne erreur problème avec la création d'un bean
+    //private String id;
+    private String name;
     private String lettre;
     private String photo;
     private Adresse adresse;
@@ -31,4 +30,5 @@ public class EntrepotEntity {
     private Set<CamionEntity> camionEntities;
     @OneToMany(mappedBy = "entrepotEntity")
     private Set<StockEntity> stockEntities;
+
 }

@@ -2,10 +2,12 @@ package fr.uga.l3miage.integrator.responses;
 
 import fr.uga.l3miage.integrator.enums.Emploi;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Schema(name = "EmployeResponseDTO", description = "Employe response")
+//@Builder
 public class EmployeResponseDTO {
     @Schema(description = "Trigramme de l'employé")
     private String trigramme;
