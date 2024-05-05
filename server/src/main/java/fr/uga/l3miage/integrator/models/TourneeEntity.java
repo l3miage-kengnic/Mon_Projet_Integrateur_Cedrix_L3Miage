@@ -14,8 +14,9 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TourneeEntity {    @Id
-private String reference;
+public class TourneeEntity {
+    @Id
+    private String reference;
     @Enumerated(EnumType.STRING)
     private EtatsDeTournee etat;
     private String lettre;

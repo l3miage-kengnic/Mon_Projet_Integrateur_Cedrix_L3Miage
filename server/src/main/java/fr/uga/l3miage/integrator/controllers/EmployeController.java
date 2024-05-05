@@ -1,6 +1,5 @@
 package fr.uga.l3miage.integrator.controllers;
 
-import fr.uga.l3miage.integrator.components.EmployeComponent;
 import fr.uga.l3miage.integrator.endpoints.EmployeEndPoints;
 import fr.uga.l3miage.integrator.enums.Emploi;
 import fr.uga.l3miage.integrator.responses.EmployeResponseDTO;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Controller;
 
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 
 // Annotation indiquant que cette classe est un contrôleur Spring
@@ -36,7 +34,7 @@ public class EmployeController implements EmployeEndPoints {
     @Override
     public Set<EmployeResponseDTO> getAllLivreurs() {
         // Récupérer les employés avec le rôle "livreur"
-        return employeService.getEmployesByEmploi(Emploi.livreur);
+        return employeService.getEmployesByEmploi(Emploi.LIVREUR);
     }
 
     // Implémentation du point de terminaison qui récupère les employés par rôle
