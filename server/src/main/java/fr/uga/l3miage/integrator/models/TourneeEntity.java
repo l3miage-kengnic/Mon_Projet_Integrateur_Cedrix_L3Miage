@@ -1,9 +1,7 @@
 package fr.uga.l3miage.integrator.models;
 
 import fr.uga.l3miage.integrator.enums.EtatsDeTournee;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,6 +12,10 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+
+@Builder
+@Setter
+@Getter
 public class TourneeEntity {
     @Id
     private String reference;
@@ -35,7 +37,8 @@ public class TourneeEntity {
 
     @ManyToMany(mappedBy = "tourneeEntities",fetch= FetchType.LAZY)
     private Collection<EmployeEntity> employeEntities=new ArrayList<>();
-    @OneToMany(mappedBy="tourneeEntity")
+    @OneToMany//(mappedBy="tourneeEntity") //*******Cedrix est passé par ici****
+    @JoinColumn(name = "tournee_id", referencedColumnName = "tourneeEntity")
     private Set<LivraisonEntity> livraisonEntities;
 
 

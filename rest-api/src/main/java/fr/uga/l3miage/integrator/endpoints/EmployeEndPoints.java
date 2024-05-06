@@ -17,7 +17,7 @@ import java.util.Set;
 // Annotation pour permettre des requêtes cross-origin depuis "http://localhost:8080"
 @CrossOrigin(origins = "http://localhost:8080")
 // Annotation pour définir la route de base pour tous les endpoints
-@RequestMapping("/employes")
+@RequestMapping("/api/employes")
 public interface EmployeEndPoints {
     // Annotation pour décrire l'opération dans Swagger
     @Operation(description = "Récupérer tous les employés")

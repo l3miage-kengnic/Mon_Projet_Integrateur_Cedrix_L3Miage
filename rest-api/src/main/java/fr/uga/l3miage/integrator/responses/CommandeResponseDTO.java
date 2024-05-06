@@ -1,0 +1,21 @@
+package fr.uga.l3miage.integrator.responses;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+
+@Data
+@Schema(description = "description de commandes")
+public class CommandeResponseDTO {
+
+    @Schema(description = "reference de la commande")
+    private String reference;
+    @Schema(description = "état de la commande: ouverte, livrable ou livree")
+    private String etat;
+    @Schema(description = "date à la quelle la commande a été passé: elle passe à l'état planifiée")
+    private String date;
+    @Schema(description = "montant total de la commande")
+    private String montant;
+    @Schema(description = "client ayant passé la commande")
+    private ClientResponseDTO clientResponseDTO;
+
+}

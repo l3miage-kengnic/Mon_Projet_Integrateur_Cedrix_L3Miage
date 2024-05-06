@@ -19,6 +19,7 @@ public class TourneeResponseDTO {
     @Schema(description = "somme des montant de chaque livraison  de la Tournee")
     private String montant;
 
-    //? private Set<Livraison> livraisons;
+    private Set<LivraisonResponseDTO> livraisons;
+
 
 }
