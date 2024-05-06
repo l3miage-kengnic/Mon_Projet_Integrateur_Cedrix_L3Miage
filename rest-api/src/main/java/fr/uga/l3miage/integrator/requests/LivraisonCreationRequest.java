@@ -11,7 +11,7 @@ import lombok.Data;
 public class LivraisonCreationRequest {
     private String reference;
     private String etat;
-    private Float montant;
+    private double montant;
 
 
 }

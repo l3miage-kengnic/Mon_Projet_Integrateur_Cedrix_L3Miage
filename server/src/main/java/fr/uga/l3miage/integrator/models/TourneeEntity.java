@@ -23,14 +23,15 @@ public class TourneeEntity {
     private EtatsDeTournee etat;
     private String lettre;
     private double montant; //a revoir ou D
+    /**
     private int tdmTheorique;
     private int tdmEffectif;
     private double distanceAParcourir;
-    private double distanceDeRetour;
+    private double distanceDeRetour; ****/
 
 
-    @ManyToOne
-    private JourneeEntity journeeEntity;
+   /* @ManyToOne
+    private JourneeEntity journeeEntity; */
 
     @ManyToOne
     private CamionEntity camionEntity;

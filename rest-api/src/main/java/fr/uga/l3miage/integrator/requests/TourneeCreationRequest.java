@@ -14,7 +14,7 @@ public class TourneeCreationRequest {
     private String reference;
     private String etat;
     private String lettre;
-    private String montant;
+    private double montant;
 
     private Set<LivraisonCreationRequest> livraisons;
 }

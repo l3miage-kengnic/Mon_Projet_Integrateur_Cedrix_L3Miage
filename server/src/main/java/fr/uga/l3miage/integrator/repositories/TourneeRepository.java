@@ -9,4 +9,5 @@ import java.util.Set;
 @Repository
 public interface TourneeRepository extends JpaRepository<TourneeEntity, String> {
     TourneeEntity findByReference(String reference);
+
 }

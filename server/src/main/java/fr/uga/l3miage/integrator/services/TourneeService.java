@@ -5,6 +5,7 @@ import fr.uga.l3miage.integrator.components.TourneeComponent;
 import fr.uga.l3miage.integrator.exceptions.rest.NotFoundEntityRestException;
 import fr.uga.l3miage.integrator.exceptions.technical.NotFoundTourneeEntityException;
 import fr.uga.l3miage.integrator.models.TourneeEntity;
+import fr.uga.l3miage.integrator.requests.TourneeCreationRequest;
 import fr.uga.l3miage.integrator.responses.TourneeResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class TourneeService {
     @Autowired   // Est-ce utile??
     TourneeMapper tourneeMapper;
 
-    public TourneeResponseDTO getTourneeByReference(String reference) throws NotFoundTourneeEntityException {
+    public TourneeResponseDTO getTourneeByReference(String reference) throws NotFoundEntityRestException {
 
         try {
             TourneeResponseDTO tourneesDTO;
@@ -31,7 +32,14 @@ public class TourneeService {
         }catch (NotFoundTourneeEntityException e){
             throw new NotFoundEntityRestException(e.getMessage());
         }
+    }
 
+    public  TourneeResponseDTO creatTournee(TourneeCreationRequest tourneeCreationRequest){
+        TourneeResponseDTO tourneesDTO;
+        tourneesDTO = new TourneeResponseDTO();
+        TourneeEntity tourneeEntity=tourneeComponent.creatTournee(tourneeCreationRequest);
+        tourneesDTO = tourneeMapper.toResponseDTO(tourneeEntity);
 
+        return tourneesDTO;
     }
 }

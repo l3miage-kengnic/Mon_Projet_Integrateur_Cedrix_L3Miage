@@ -2,6 +2,7 @@ package fr.uga.l3miage.integrator.controllers;
 
 import fr.uga.l3miage.integrator.endpoints.TourneeEndpoints;
 import fr.uga.l3miage.integrator.exceptions.rest.NotFoundEntityRestException;
+import fr.uga.l3miage.integrator.requests.TourneeCreationRequest;
 import fr.uga.l3miage.integrator.responses.TourneeResponseDTO;
 import fr.uga.l3miage.integrator.services.TourneeService;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class TourneeController implements TourneeEndpoints {
     }
 
     @Override
-    public creatTournee(String reference){
-
+    public TourneeResponseDTO creatTournee(TourneeCreationRequest tourneeCreationRequest){
+        return tourneeService.creatTournee(tourneeCreationRequest);
     }
 }
