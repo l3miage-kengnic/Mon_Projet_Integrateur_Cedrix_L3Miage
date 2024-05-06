@@ -1,4 +1,10 @@
 package fr.uga.l3miage.integrator.services;
+import fr.uga.l3miage.integrator.mappers.EmployeMapper;
+
+
+import java.util.stream.Collectors;
+
+/*package fr.uga.l3miage.integrator.services;
 
 import fr.uga.l3miage.integrator.components.EmployeComponent;
 import fr.uga.l3miage.integrator.enums.Emploi;
@@ -18,6 +24,7 @@ import java.util.stream.Collectors;
 public class EmployeService {
     // Dépendance pour le composant Employe, qui interagit avec la base de données ou d'autres sources de données
     private final EmployeComponent employeComponent;
+
 
     // Méthode pour récupérer tous les employés
     public List<EmployeResponseDTO> getAllEmployes() {
@@ -50,5 +57,76 @@ public class EmployeService {
         dto.setPhoto(employeEntity.getPhoto());
         dto.setEmploi(employeEntity.getEmploi());
         return dto;// Retourne le DTO avec les données converties
+    }
+}
+
+
+
+
+package fr.uga.l3miage.integrator.services;
+
+import fr.uga.l3miage.integrator.components.EmployeComponent;
+import fr.uga.l3miage.integrator.enums.Emploi;
+import fr.uga.l3miage.integrator.mappers.EmployeMapper;
+import fr.uga.l3miage.integrator.responses.EmployeResponseDTO;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+    @Service
+    @RequiredArgsConstructor
+    public class EmployeService {
+
+        private final EmployeComponent employeComponent;
+        private final EmployeMapper employeMapper; // Injecter le mapper
+
+        public List<EmployeResponseDTO> getAllEmployes() {
+            return employeComponent.getAllEmployes()
+                    .stream()
+                    .map(employeMapper::entityToDto) // Utiliser le mapper pour la conversion
+                    .collect(Collectors.toList());
+        }
+
+        public Set<EmployeResponseDTO> getEmployesByEmploi(Emploi emploi) {
+            return employeComponent.findByEmploi(emploi)
+                    .stream()
+                    .map(employeMapper::entityToDto) // Utiliser le mapper pour la conversion
+                    .collect(Collectors.toSet());
+        }
+    }
+*/
+import fr.uga.l3miage.integrator.components.EmployeComponent;
+import fr.uga.l3miage.integrator.enums.Emploi;
+import fr.uga.l3miage.integrator.mappers.EmployeMapper;
+import fr.uga.l3miage.integrator.responses.EmployeResponseDTO;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+@Service
+@RequiredArgsConstructor
+public class EmployeService {
+
+    private final EmployeComponent employeComponent;
+    private final EmployeMapper employeMapper;
+
+    public List<EmployeResponseDTO> getAllEmployes() {
+        return employeComponent.getAllEmployes()
+                .stream()
+                .map(employeMapper::entityToDto)
+                .collect(Collectors.toList());
+    }
+
+    public Set<EmployeResponseDTO> getEmployesByEmploi(Emploi emploi) {
+        return employeComponent.findByEmploi(emploi)
+                .stream()
+                .map(employeMapper::entityToDto)
+                .collect(Collectors.toSet());
     }
 }

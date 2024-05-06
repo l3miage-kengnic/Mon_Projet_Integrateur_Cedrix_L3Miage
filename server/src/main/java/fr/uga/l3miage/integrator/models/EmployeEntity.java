@@ -26,8 +26,15 @@ public class EmployeEntity {
     @Enumerated(EnumType.STRING)
     private Emploi emploi;
 
+
     @ManyToMany
-    private Collection<TourneeEntity> tourneeEntities=new ArrayList<>();
+    private Collection<TourneeEntity> tourneeEntities = new ArrayList<>();
     @OneToOne
     private EntrepotEntity entrepotEntity;
+
+    //@ManyToOne // Employé associé à un entrepôt
+    //private EntrepotEntity entrepotEntity;
+
+
+
 }

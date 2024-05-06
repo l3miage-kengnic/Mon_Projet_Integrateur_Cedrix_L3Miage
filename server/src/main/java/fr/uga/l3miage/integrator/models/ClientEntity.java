@@ -24,6 +24,6 @@ public class ClientEntity {
     private double montantTotal;// a revoir
     private Adresse adresse;
     private GeoPosition position;
-    @OneToMany(mappedBy = "clientEntity")
-    private Collection<CommandeEntity> commandeEntities;
+    //@OneToMany(mappedBy = "clientEntity")
+    //private Collection<CommandeEntity> commandeEntities;
 }

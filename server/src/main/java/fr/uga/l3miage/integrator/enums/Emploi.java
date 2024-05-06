@@ -1,8 +1,12 @@
 package fr.uga.l3miage.integrator.enums;
 
 public enum Emploi {
-    planificateur,
+    /*planificateur,
     livreur,
     ressourceur,
-    prodeur
+    prodeur*/
+    LIVREUR,
+    PLANIFICATEUR,
+    RESSOURCEUR,
+    PRODEUR
 }

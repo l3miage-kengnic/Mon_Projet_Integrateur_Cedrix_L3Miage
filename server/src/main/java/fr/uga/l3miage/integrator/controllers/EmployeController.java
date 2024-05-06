@@ -1,5 +1,19 @@
 package fr.uga.l3miage.integrator.controllers;
 
+import fr.uga.l3miage.integrator.endpoints.EmployeEndPoints;
+import fr.uga.l3miage.integrator.enums.Emploi;
+import fr.uga.l3miage.integrator.responses.EmployeResponseDTO;
+import fr.uga.l3miage.integrator.services.EmployeService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
+import java.util.Set;
+
+/*
 import fr.uga.l3miage.integrator.components.EmployeComponent;
 import fr.uga.l3miage.integrator.endpoints.EmployeEndPoints;
 import fr.uga.l3miage.integrator.enums.Emploi;
@@ -44,6 +58,45 @@ public class EmployeController implements EmployeEndPoints {
     public Set<EmployeResponseDTO> getEmployesByRole(Emploi emploi) {
         // Récupérer les employés selon le rôle donné en paramètre
         return employeService.getEmployesByEmploi(emploi);
+    }
+
+}
+*/
+@Controller
+@RequiredArgsConstructor
+public class EmployeController implements EmployeEndPoints {
+    private final EmployeService employeService;
+
+    @Override
+    public ResponseEntity<List<EmployeResponseDTO>> getAllEmployes() {
+        List<EmployeResponseDTO> allEmployes = employeService.getAllEmployes();
+        return ResponseEntity.ok(allEmployes);
+    }
+
+    /*@Override
+    public Set<EmployeResponseDTO> getAllLivreurs() {
+        return employeService.getEmployesByEmploi(Emploi.LIVREUR
+    }
+
+    @Override
+    public Set<EmployeResponseDTO> getEmployesByRole(Emploi emploi) {
+        return employeService.getEmployesByEmploi(emploi);
+    }*/
+    @Override
+    @GetMapping("/{emploi}")
+    public Set<EmployeResponseDTO> getEmployesByRole(@PathVariable("emploi") String emploi) {
+        Emploi role;
+        switch (emploi.toLowerCase()) {
+            case "livreurs":
+                role = Emploi.LIVREUR;
+                break;
+            case "planificateur":
+                role = Emploi.PLANIFICATEUR;
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid role: " + emploi);
+        }
+        return employeService.getEmployesByEmploi(role);
     }
 
 }
