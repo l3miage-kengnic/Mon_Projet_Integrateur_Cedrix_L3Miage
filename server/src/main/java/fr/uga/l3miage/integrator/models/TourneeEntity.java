@@ -13,6 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 
+
 @Builder
 @Setter
 @Getter
@@ -38,9 +39,14 @@ public class TourneeEntity {
 
     @ManyToMany(mappedBy = "tourneeEntities",fetch= FetchType.LAZY)
     private Collection<EmployeEntity> employeEntities=new ArrayList<>();
+
     @OneToMany//(mappedBy="tourneeEntity") //*******Cedrix est passé par ici****
     @JoinColumn(name = "tournee_id", referencedColumnName = "tourneeEntity")
     private Set<LivraisonEntity> livraisonEntities;
+
+    //@OneToMany(mappedBy="tourneeEntity")
+    //private Set<LivraisonEntity> livraisonEntities;
+
 
 
 

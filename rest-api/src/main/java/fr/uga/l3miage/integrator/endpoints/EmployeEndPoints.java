@@ -36,7 +36,7 @@ public interface EmployeEndPoints {
     ResponseEntity<List<EmployeResponseDTO>> getAllEmployes();
 
     // Annotation pour décrire une opération pour récupérer tous les livreurs
-    @Operation(description = "Récupérer la liste des livreurs")
+    /*@Operation(description = "Récupérer la liste des livreurs")
     @ApiResponse(
             responseCode = "200",
             description = "La liste des livreurs a été récupérée avec succès",
@@ -67,9 +67,8 @@ public interface EmployeEndPoints {
     // Annotation pour définir le chemin de cette route avec une variable (PathVariable) qui indique le rôle de l'employé
     @GetMapping("/{emploi}")
     // Cette méthode prend un paramètre d'entrée `emploi` et récupère tous les employés avec ce rôle. Retourne un ensemble d'EmployeResponseDTO
-    Set<EmployeResponseDTO> getEmployesByRole(@PathVariable("emploi") Emploi emploi);
+    Set<EmployeResponseDTO> getEmployesByRole(@PathVariable("emploi") Emploi emploi);*/
+    @GetMapping("/{emploi}")
+    Set<EmployeResponseDTO> getEmployesByRole(@PathVariable("emploi") String emploi);
 
 }
-
-
-

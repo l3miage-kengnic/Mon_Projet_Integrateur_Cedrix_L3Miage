@@ -3,25 +3,28 @@ package fr.uga.l3miage.integrator.models;
 import fr.uga.l3miage.integrator.DataType.Adresse;
 import fr.uga.l3miage.integrator.DataType.GeoPosition;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table
+@Builder
 public class EntrepotEntity {
     @Id
-    private String id;
+    //private String id;
+    private String name;
     private String lettre;
     private String photo;
+    @Embedded
     private Adresse adresse;
+    @Embedded
     private GeoPosition position;
     @OneToMany(mappedBy = "entrepotEntity")
     private Set<JourneeEntity> journeeEntities;
@@ -31,4 +34,8 @@ public class EntrepotEntity {
     private Set<CamionEntity> camionEntities;
     @OneToMany(mappedBy = "entrepotEntity")
     private Set<StockEntity> stockEntities;
+
+    //@OneToMany(mappedBy = "entrepotEntity") // Liens vers EmployeEntity.entrepotEntity
+    //private Set<EmployeEntity> employeEntities;
+
 }

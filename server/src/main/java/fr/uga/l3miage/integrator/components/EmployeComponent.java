@@ -21,18 +21,15 @@ public class EmployeComponent {
     public List<EmployeEntity> getAllEmployes() {
         return employeRepository.findAll();// Récupère tous les enregistrements d'employés dans la base de données
     }
-    /*public Set<EmployeEntity> finAllLivreurs() {
+    //public Set<EmployeEntity> finAllLivreurs() {
 
-        return employeRepository.findAllByEmploi(Emploi.livreur);
-    }*/
+      //  return employeRepository.findAllByEmploi(Emploi.livreur);
+    //}
 
 
     // Méthode pour récupérer les employés par rôle
     public Set<EmployeEntity> findByEmploi(Emploi emploi) {
         return employeRepository.findAllByEmploi(emploi);// Récupère les employés ayant le rôle donné
     }
-
-
-
 
 }
