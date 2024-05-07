@@ -13,9 +13,9 @@ import java.util.Set;
 @Mapper
 public interface TourneeMapper {
 
-    @Mapping(target = "to Set TourneeResponseDTO")
+    @Mapping(target = "to TourneeResponseDTO")
     public TourneeResponseDTO toResponseDTO(TourneeEntity tourneeEntity);
 
-    @Mapping(target = "TourneeEntity")
+    @Mapping(target = "to TourneeEntity")
     public TourneeEntity toEntity(TourneeCreationRequest tourneeCreationRequest);
 }

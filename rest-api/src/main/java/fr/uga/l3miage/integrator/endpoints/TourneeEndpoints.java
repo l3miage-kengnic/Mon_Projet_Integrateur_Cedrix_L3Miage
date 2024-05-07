@@ -1,5 +1,6 @@
 package fr.uga.l3miage.integrator.endpoints;
 
+import fr.uga.l3miage.integrator.errors.NotFoundErrorResponse;
 import fr.uga.l3miage.integrator.requests.TourneeCreationRequest;
 import fr.uga.l3miage.integrator.responses.TourneeResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
@@ -20,7 +21,7 @@ public interface TourneeEndpoints {
 
     @Operation(description = "Récuperer une tournée")
     @ApiResponse(responseCode = "200",description = "Le son à été ajouté à la playlist") //***********
-    @ApiResponse(responseCode = "404", description = "la playlist ou le son demandée n'a pas été trouvé",content = @Content(schema = @Schema(implementation = AddPlaylistErrorResponse.class),mediaType = MediaType.APPLICATION_JSON_VALUE))
+    @ApiResponse(responseCode = "404", description = "la playlist ou le son demandée n'a pas été trouvé",content = @Content(schema = @Schema(implementation = NotFoundErrorResponse.class),mediaType = MediaType.APPLICATION_JSON_VALUE))
     @GetMapping("/getAll/{referenceTournee}")
     @ResponseStatus(HttpStatus.OK)
     TourneeResponseDTO getTourneeByReference( @PathVariable(name = "referenceTournee") String reference);

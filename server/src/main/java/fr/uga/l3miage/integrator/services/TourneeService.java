@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class TourneeService {
 
     private final TourneeComponent tourneeComponent;
-    @Autowired   // Est-ce utile??
+       // Est-ce utile??
     TourneeMapper tourneeMapper;
 
     public TourneeResponseDTO getTourneeByReference(String reference) throws NotFoundEntityRestException {

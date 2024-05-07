@@ -28,7 +28,7 @@ public class TourneeComponent {
 
     public TourneeEntity creatTournee(TourneeCreationRequest tourneeCreationRequest){
         EtatsDeTournee e = EtatsDeTournee.valueOf((tourneeCreationRequest.getEtat()));
-        Set<LivraisonEntity> livraisonEntities;
+        Set<LivraisonEntity> livraisonEntities = Set.of();
 
         for( LivraisonCreationRequest livraisonCreationRequest: tourneeCreationRequest.getLivraisons()){
             //pour chaque livraisonRequest de tourneeCreationRequest, creer une LivraisonEntity
