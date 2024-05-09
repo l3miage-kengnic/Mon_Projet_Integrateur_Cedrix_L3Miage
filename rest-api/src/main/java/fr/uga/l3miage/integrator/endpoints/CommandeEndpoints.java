@@ -17,7 +17,14 @@ import java.util.Set;
 public interface CommandeEndpoints {
 
 
-    @GetMapping("/getAll") // requette http: /api/commandes/getAll
+    @GetMapping("/getPlanifiees") // requette http: .../api/commandes/getPlanifiees
     @ResponseStatus(HttpStatus.OK)
+    // Toutes les commandes planifiées:
     Set<CommandeResponseDTOFinal> getCommandesPlanifiees(); // ne prend aucun paramètre, et renvoie des DTO des commandes en BD
+
+    @GetMapping("/getAll") // requette http: .../api/commandes/getAll
+    @ResponseStatus(HttpStatus.OK)
+    // Toutes les commandes en BD
+    Set<CommandeResponseDTOFinal> getAllCommandes();
+
 }
