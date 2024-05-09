@@ -32,12 +32,12 @@ public class CommandeEntity {
     @ManyToOne
     @JoinColumn(name = "livraison_id")
     private LivraisonEntity livraisonEntity;
-    //@ManyToOne
-    //private ClientEntity clientEntity;
+    @ManyToOne
+    private ClientEntity clientEntity;
 
 
 
-    public void setLivraisonEntity(LivraisonEntity livraisonEntity) {
+    /*public void setLivraisonEntity(LivraisonEntity livraisonEntity) {
         this.livraisonEntity = livraisonEntity;
-    }
+    }*/
 }

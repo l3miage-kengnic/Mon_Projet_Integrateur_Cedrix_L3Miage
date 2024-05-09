@@ -16,7 +16,7 @@ import fr.uga.l3miage.integrator.repositories.EntrepotRepository;
 public class EntrepotCSVImporter {
     private final EntrepotRepository entrepotRepository;
 
-    @PostConstruct
+    /*@PostConstruct
     public void importEntrepotData() {
         String csvFilePath = "C:\\Users\\Pc\\OneDrive\\Bureau\\ana\\projet-integrateur-2024-serveur-springboot-l3miage-elbouchi - Copie\\server\\src\\main\\java\\fr\\uga\\l3miage\\integrator\\CSV\\Export_Entrepôts.csv";
         String line;
@@ -52,7 +52,45 @@ public class EntrepotCSVImporter {
         } catch (IOException e) {
             e.printStackTrace(); // Gérer les exceptions liées au fichier
         }
+    }*/
+    @PostConstruct
+    public void importEntrepotData() {
+        String csvFilePath = "C:\\Users\\Pc\\OneDrive\\Bureau\\ana\\projet-integrateur-2024-serveur-springboot-l3miage-elbouchi - Copie\\server\\src\\main\\java\\fr\\uga\\l3miage\\integrator\\CSV\\Export_Entrepôts.csv";
+        String line;
+        String csvSeparator = ",";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
+            br.readLine(); // Ignore the header line
+
+            while ((line = br.readLine()) != null) {
+                String[] fields = line.split(csvSeparator);
+
+                // Check that the line contains all the necessary data
+                if (fields.length < 8) {
+                    continue; // Ignore incomplete lines
+                }
+
+                Adresse adresse = new Adresse(fields[3], fields[4], fields[5]); // Address, postal code, city
+                double latitude = Double.parseDouble(fields[6]);
+                double longitude = Double.parseDouble(fields[7]);
+                GeoPosition position = new GeoPosition(latitude, longitude);
+
+                EntrepotEntity entrepot = new EntrepotEntity();
+                entrepot.setName(fields[0]); // Unique warehouse identifier
+                entrepot.setLettre(fields[1]); // Identification letter
+                entrepot.setPhoto(fields[2]); // Warehouse photo
+                entrepot.setAdresse(adresse); // Assign the Adresse object
+                entrepot.setPosition(position); // Assign the GeoPosition object
+
+                entrepotRepository.save(entrepot); // Save the warehouse
+
+                System.out.println("Warehouse added: " + fields[0]); // Add a log for tracking
+            }
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle file-related exceptions
+        }
     }
 
 
 }
+

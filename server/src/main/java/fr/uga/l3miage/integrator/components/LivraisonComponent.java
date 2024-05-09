@@ -199,7 +199,7 @@ public class LivraisonComponent {
 //fonctionne bien
 
 package fr.uga.l3miage.integrator.components;
-
+/*
 import fr.uga.l3miage.integrator.enums.EtatsDeCommande;
 import fr.uga.l3miage.integrator.enums.EtatsDeLivraison;
 import fr.uga.l3miage.integrator.models.CommandeEntity;
@@ -275,6 +275,7 @@ public class LivraisonComponent {
 
         return commande;
     }*/
+/*
     private static final String DATE_FORMAT = "dd/MM/yyyy HH:mm";
     private static final String QUOTES_REGEX = "^\"|\"$";
 
@@ -337,6 +338,7 @@ public class LivraisonComponent {
             System.err.println("Erreur de lecture du fichier CSV : " + e.getMessage());
             e.printStackTrace(); // Affichez le stack trace complet
         }*/
+/*
         try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
             br.readLine(); // Ignore the header line
             String line;
@@ -443,6 +445,7 @@ public class LivraisonComponent {
 
         return livraisons;
     }*/
+/*
     private List<LivraisonEntity> createLivraisonsFromCommande(List<CommandeEntity> commandes) {
         List<LivraisonEntity> livraisons = new ArrayList<>();
 
@@ -469,3 +472,123 @@ public class LivraisonComponent {
         return livraisons;
     }
 }
+*/
+
+import fr.uga.l3miage.integrator.enums.EtatsDeCommande;
+import fr.uga.l3miage.integrator.enums.EtatsDeLivraison;
+import fr.uga.l3miage.integrator.models.CommandeEntity;
+import fr.uga.l3miage.integrator.models.LivraisonEntity;
+import fr.uga.l3miage.integrator.repositories.LivraisonRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.regex.Pattern;
+import java.text.Normalizer;
+
+@Component
+@RequiredArgsConstructor
+public class LivraisonComponent {
+
+    private final LivraisonRepository livraisonRepository;
+
+    public List<LivraisonEntity> getAllLivraisons() {
+        return livraisonRepository.findAll();
+    }
+
+    // Supprimer les guillemets doubles
+    private String supprimerGuillemets(String s) {
+        return s.replaceAll("^\"|\"$", ""); // Supprimez les guillemets au début et à la fin
+    }
+
+    // Supprimer les accents des chaînes
+    private String supprimerAccents(String str) {
+        String decomposed = Normalizer.normalize(str, Normalizer.Form.NFD);
+        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        return pattern.matcher(decomposed).replaceAll("");
+    }
+
+    // Fonction pour parser une date à partir d'une chaîne
+    private LocalDateTime parseDate(String dateString) {
+        dateString = dateString.replaceAll("^\"|\"$", "");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        return LocalDateTime.parse(dateString, formatter);
+    }
+
+    // Mapper une ligne de CSV vers une entité Commande
+    private CommandeEntity mapLigneVersCommandeEntity(String ligne) {
+        String[] fields = ligne.split(","); // Séparateur de CSV
+
+        if (fields.length < 7) { // Assurez-vous qu'il y a suffisamment de données
+            throw new IllegalArgumentException("Données CSV incomplètes : " + ligne);
+        }
+
+        CommandeEntity commande = new CommandeEntity();
+        commande.setReference(fields[0].trim());
+
+        try {
+            commande.setEtat(EtatsDeCommande.valueOf(supprimerAccents(fields[1].trim().toUpperCase())));
+        } catch (IllegalArgumentException e) {
+            System.err.println("Valeur d'énumération incorrecte : " + fields[1]);
+        }
+
+
+
+        // Ajoutez d'autres champs à mapper si nécessaire
+
+        return commande;
+    }
+
+    @PostConstruct
+    public void importCommandesDepuisCSV() {
+        String csvFilePath = "C:\\Users\\Pc\\OneDrive\\Bureau\\ana\\projet-integrateur-2024-serveur-springboot-l3miage-elbouchi - Copie\\server\\src\\main\\java\\fr\\uga\\l3miage\\integrator\\CSV\\Export_Commandes.csv"; // Ajustez le chemin
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {
+            br.readLine(); // Ignorer la ligne d'en-tête
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                try {
+                    CommandeEntity commande = mapLigneVersCommandeEntity(line);
+
+                    // Vous pouvez créer des livraisons à partir des commandes
+                    List<LivraisonEntity> livraisons = createLivraisonsFromCommande(commande);
+                    for (LivraisonEntity livraison : livraisons) {
+                        livraisonRepository.save(livraison); // Sauvegardez les livraisons
+                    }
+                } catch (IllegalArgumentException e) {
+                    System.err.println(e.getMessage());
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Erreur de lecture du fichier CSV : " + e.getMessage());
+            e.printStackTrace(); // Affichez le stack trace complet
+        }
+    }
+
+    // Méthode pour générer des livraisons à partir d'une commande
+    private List<LivraisonEntity> createLivraisonsFromCommande(CommandeEntity commande) {
+        List<LivraisonEntity> livraisons = new ArrayList<>();
+
+        // Par exemple, vous pouvez créer des livraisons à partir des références de commande
+        // C'est juste une idée, adaptez selon vos besoins
+        LivraisonEntity livraison = new LivraisonEntity();
+        livraison.setReference(commande.getReference());
+        livraison.setMontant(100.0f); // Définir des valeurs aléatoires ou des valeurs par défaut
+        livraison.setEtat(EtatsDeLivraison.PLANIFIEE); // Définir l'état de la livraison
+        livraisons.add(livraison);
+
+        return livraisons;
+    }
+}
+

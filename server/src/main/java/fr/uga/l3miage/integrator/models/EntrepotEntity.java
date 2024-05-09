@@ -35,7 +35,6 @@ public class EntrepotEntity {
     @OneToMany(mappedBy = "entrepotEntity")
     private Set<StockEntity> stockEntities;
 
-    //@OneToMany(mappedBy = "entrepotEntity") // Liens vers EmployeEntity.entrepotEntity
-    //private Set<EmployeEntity> employeEntities;
+
 
 }

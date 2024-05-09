@@ -3,3 +3,44 @@ EmployeEndPoints définit les opérations d'API, EmployeController gère les req
 EmployeService implémente la logique métier, EmployeComponent gère l'accès aux données,
 et EmployeRepository interagit directement avec la base de données. Les données sont renvoyées au client sous forme de EmployeResponseDTO,
 assurant une séparation des préoccupations et une architecture modulaire.
+
+
+
+
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LivreurService {
+  private apiUrl = 'http://localhost:8080/employes/livreurs';
+
+  constructor(private http: HttpClient) { }
+
+  getLivreurs(): Observable<any> {
+    return this.http.get<any>(this.apiUrl);
+  }
+}
+
+
+import { Component, OnInit } from '@angular/core';
+import { LivreurService } from './livreur.service';
+
+@Component({
+  selector: 'app-livreur-travail',
+  templateUrl: './livreur-travail.component.html',
+  styleUrls: ['./livreur-travail.component.scss']
+})
+export class LivreurTravailComponent implements OnInit {
+  livreurs: any;
+
+  constructor(private livreurService: LivreurService) { }
+
+  ngOnInit(): void {
+    this.livreurService.getLivreurs().subscribe(data => {
+      this.livreurs = data;
+    });
+  }
+}

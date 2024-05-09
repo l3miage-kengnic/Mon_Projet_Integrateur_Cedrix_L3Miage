@@ -5,6 +5,7 @@ import fr.uga.l3miage.integrator.models.EmployeEntity;
 import fr.uga.l3miage.integrator.repositories.EmployeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 import java.util.Set;
