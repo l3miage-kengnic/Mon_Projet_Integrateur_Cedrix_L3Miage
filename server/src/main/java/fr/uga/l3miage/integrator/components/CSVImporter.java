@@ -28,7 +28,7 @@ public class CSVImporter {
 
     @PostConstruct
     public void importEmployeData() {
-        String csvFilePath = "C:\\Users\\Pc\\OneDrive\\Bureau\\ana\\projet-integrateur-2024-serveur-springboot-l3miage-elbouchi - Copie\\server\\src\\main\\java\\fr\\uga\\l3miage\\integrator\\CSV\\Export_Employes.csv";
+        String csvFilePath = "C:\\Users\\Pc\\OneDrive\\Bureau\\ana\\projet-integrateur-2024-serveur-springboot-l3miage-elbouchi - Copie1\\server\\src\\main\\java\\fr\\uga\\l3miage\\integrator\\CSV\\Export_Employes.csv";
         String line;
         String csvSeparator = ",";
 
@@ -51,7 +51,7 @@ public class CSVImporter {
                 //String entrepotName = fields[6];
                 //EntrepotEntity entrepot = entrepotRepository.findByName(entrepotName);
                 //employe.setEntrepotEntity(entrepot);
-                employe.setEntrepotEntity(entrepotRepository.findByName(fields[6]));  //a revoir pourquoi quand j´ajoute ca ca m´affiche plus livreur et plann
+                employe.setEntrepotEntity(entrepotRepository.findByName(fields[6]));//a revoir pourquoi quand j´ajoute ca ca m´affiche plus livreur et plann
 
 
 
