@@ -27,3 +27,4 @@ public interface EntrepotEndpoint {
     @GetMapping
     ResponseEntity<List<EntrepotResponseDTO>> getAllEntrepots();
 }
+//

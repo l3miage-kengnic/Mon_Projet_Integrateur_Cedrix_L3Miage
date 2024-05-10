@@ -24,6 +24,6 @@ public class CommandeResponseDTO {
     private int dureeDeLivraison;
 
     //private Adresse adresseClient; // Nouveau champ
-
+//
 
 }

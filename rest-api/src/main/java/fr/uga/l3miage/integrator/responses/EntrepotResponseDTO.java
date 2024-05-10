@@ -37,3 +37,4 @@ public class EntrepotResponseDTO {
     @Schema(description = "Trigramme de l'employé")
     private String employeEntityTrigramme;
 }
+//
