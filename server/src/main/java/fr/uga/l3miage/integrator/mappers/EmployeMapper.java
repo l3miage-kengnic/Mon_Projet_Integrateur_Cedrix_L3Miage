@@ -39,7 +39,7 @@ import org.mapstruct.Mapping;
 import fr.uga.l3miage.integrator.models.EmployeEntity;
 import fr.uga.l3miage.integrator.responses.EmployeResponseDTO;
 
-@Mapper(componentModel = "spring")
+@Mapper
 public interface EmployeMapper {
 
     // Convertir EmployeEntity en EmployeResponseDTO

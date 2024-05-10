@@ -128,5 +128,12 @@ public class EmployeService {
                 .stream()
                 .map(employeMapper::entityToDto)
                 .collect(Collectors.toSet());
+
+        /*******Set<EmployeResponseDTO> employeResponseDTOSet = Set.of();
+         Set<EmployeEntity> employeEntities = employeComponent.findByEmploi(emploi);
+         for( EmployeEntity employeEntity: employeEntities){
+         employeResponseDTOSet.add(employeMapper.entityToDto(employeEntity));
+         }
+         return employeResponseDTOSet;**********/
     }
 }
