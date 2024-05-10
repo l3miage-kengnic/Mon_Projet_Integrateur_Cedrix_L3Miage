@@ -49,7 +49,7 @@ public interface EmployeMapper {
     @Mapping(source = "nom", target = "nom")
     @Mapping(source = "telephone", target = "telephone")
     @Mapping(source = "emploi", target = "emploi")
-    @Mapping(source = "photo", target = "photo")
+    /*** @Mapping(source = "photo", target = "photo") ***/
     @Mapping(source = "entrepotEntity.name", target = "entrepot") // Correction du nom
     EmployeResponseDTO entityToDto(EmployeEntity employeEntity);
 
@@ -60,7 +60,7 @@ public interface EmployeMapper {
     @Mapping(source = "nom", target = "nom")
     @Mapping(source = "telephone", target = "telephone")
     @Mapping(source = "emploi", target = "emploi")
-    @Mapping(source = "photo", target = "photo")
+    /**@Mapping(source = "photo", target = "photo") ***/
     @Mapping(source = "entrepot", target = "entrepotEntity.name") // Correction du nom
     EmployeEntity dtoToEntity(EmployeResponseDTO employeResponseDTO);
 }
