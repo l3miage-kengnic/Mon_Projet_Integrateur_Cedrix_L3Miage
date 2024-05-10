@@ -12,7 +12,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/entrepots")
+<<<<<<< HEAD
 //@CrossOrigin(origins = "http://localhost:8080")
+=======
+@CrossOrigin(origins = "http://localhost:8080")
+>>>>>>> e10fd43872720309e2176afdd436d2f2188e1ee1
 public interface EntrepotEndpoint {
 
     @Operation(description = "Récupérer tous les entrepôts")
@@ -27,4 +31,7 @@ public interface EntrepotEndpoint {
     @GetMapping
     ResponseEntity<List<EntrepotResponseDTO>> getAllEntrepots();
 }
+<<<<<<< HEAD
 //
+=======
+>>>>>>> e10fd43872720309e2176afdd436d2f2188e1ee1

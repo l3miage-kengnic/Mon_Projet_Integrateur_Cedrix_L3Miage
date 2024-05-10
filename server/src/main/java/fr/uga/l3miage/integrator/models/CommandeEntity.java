@@ -33,7 +33,10 @@ public class CommandeEntity {
     @JoinColumn(name = "livraison_id")
     private LivraisonEntity livraisonEntity;
     @ManyToOne
+<<<<<<< HEAD
     @JoinColumn(name = "client_id")
+=======
+>>>>>>> e10fd43872720309e2176afdd436d2f2188e1ee1
     private ClientEntity clientEntity;
 
 
