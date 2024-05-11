@@ -16,3 +16,4 @@ public class TourneeResponseDTO {
     private String camionReference;  // Référence du camion associé
     private String journeeReference;  // Référence de la journée associée
 }
+//

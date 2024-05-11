@@ -2,21 +2,39 @@ package fr.uga.l3miage.integrator.requests;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotNull;  // Pour la validation des valeurs non nulles
+import javax.validation.constraints.NotBlank;  // Validation des chaînes non vides
+import javax.validation.constraints.NotNull;  // Validation des valeurs non nulles
 
 @Data
-public class TourneeUpdateRequest {
-    /*private double montant;  // Montant mis à jour
-
-    private int tdmTheorique;  // Temps de montage théorique mis à jour
-
-    private double distanceAParcourir;  // Distance totale mise à jour
-
-    private double distanceDeRetour;  // Distance de retour mise à jour*/
+public class TourneeCreationRequest {
 
 
         private String nom;
         private String description;
+/*
 
+    @NotBlank
+    private String reference;  // Référence unique de la tournée
 
+    @NotBlank
+    private String lettre;  // Lettre de la tournée
+
+    @NotNull
+    private double montant;  // Montant total
+
+    @NotNull
+    private int tdmTheorique;  // Temps de montage théorique
+
+    @NotNull
+    private double distanceAParcourir;  // Distance totale
+
+    @NotNull
+    private double distanceDeRetour;  // Distance de retour
+
+    @NotBlank
+    private String camionReference;  // Référence du camion associé
+
+    @NotBlank
+    private String journeeReference;  // Référence de la journée associée*/
 }
+

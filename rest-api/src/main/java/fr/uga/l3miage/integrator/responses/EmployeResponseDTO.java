@@ -31,3 +31,4 @@ public class EmployeResponseDTO {
     @Schema(description = "Entrepôt associé à l'employé")
     private String entrepot; // Stocker l'ID ou le nom de l'entrepôt
 }
+//
