@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Data
@@ -22,8 +23,15 @@ public class ClientEntity {
     @Enumerated(EnumType.STRING)
     private EtatsDeClient etat;
     private double montantTotal;// a revoir
+    @Embedded
     private Adresse adresse;
+    @Embedded
     private GeoPosition position;
-    //@OneToMany(mappedBy = "clientEntity")
-    //private Collection<CommandeEntity> commandeEntities;
-}
+    @OneToMany(mappedBy = "clientEntity", cascade = CascadeType.ALL)
+    private Set<CommandeEntity> commandes;
+
+    public double getMontantTotal() {
+        return commandes.stream()
+                .mapToDouble(CommandeEntity::getMontant)
+                .sum();
+    }}

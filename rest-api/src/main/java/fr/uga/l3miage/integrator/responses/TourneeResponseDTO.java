@@ -13,4 +13,6 @@ public class TourneeResponseDTO {
     private int tdmEffectif;  // Temps de montage effectif
     private double distanceAParcourir;  // Distance totale de la tournée
     private double distanceDeRetour;  // Distance pour retourner à l'entrepôt
+    private String camionReference;  // Référence du camion associé
+    private String journeeReference;  // Référence de la journée associée
 }

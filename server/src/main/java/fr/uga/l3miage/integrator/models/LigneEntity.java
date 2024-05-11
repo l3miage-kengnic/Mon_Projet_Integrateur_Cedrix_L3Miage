@@ -22,4 +22,15 @@ public class LigneEntity {
     private CommandeEntity commandeEntity;
     @ManyToOne
     private ProduitEntity produitEntity;
+
+    public double getMontant() {
+        double montantBase = produitEntity.getPrix() * quantite;
+        double montantMontage = 0;
+
+        if (optionMontage) {
+            montantMontage = produitEntity.getTdmTheorique() * quantite;
+        }
+
+        return montantBase + montantMontage;
+    }
 }

@@ -7,6 +7,7 @@ import fr.uga.l3miage.integrator.services.EmployeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -64,6 +65,7 @@ public class EmployeController implements EmployeEndPoints {
 */
 @Controller
 @RequiredArgsConstructor
+@CrossOrigin("http://localhost:4200")
 public class EmployeController implements EmployeEndPoints {
     private final EmployeService employeService;
 

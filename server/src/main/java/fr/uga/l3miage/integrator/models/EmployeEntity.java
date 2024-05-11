@@ -30,6 +30,7 @@ public class EmployeEntity {
     @ManyToMany
     private Collection<TourneeEntity> tourneeEntities = new ArrayList<>();
     @OneToOne
+    @JoinColumn(name = "entrepot_name")
     private EntrepotEntity entrepotEntity;
 
     //@ManyToOne // Employé associé à un entrepôt

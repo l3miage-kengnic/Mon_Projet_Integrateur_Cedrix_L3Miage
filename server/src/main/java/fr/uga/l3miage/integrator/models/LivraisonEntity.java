@@ -47,6 +47,8 @@ public class LivraisonEntity {
     public List<CommandeEntity> getCommandeEntities() {
         return this.commandes;
     }
+
+
     public void addCommande(CommandeEntity commande) {
         this.commandes.add(commande);
         commande.setLivraisonEntity(this);
