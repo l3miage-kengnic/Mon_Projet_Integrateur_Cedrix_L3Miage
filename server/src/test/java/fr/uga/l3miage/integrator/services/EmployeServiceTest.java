@@ -50,12 +50,19 @@ public class EmployeServiceTest {
 
         //when
         when(employeComponent.findByEmploi(Emploi.LIVREUR)).thenReturn(employeEntities);
-
         Set<EmployeResponseDTO> result = employeService.getEmployesByEmploi(Emploi.LIVREUR);
-
         assertThat(result).hasSize(2);
         assertThat(result).contains(employeResponseDTO);
         assertThat(result).contains(employeResponseDTO1);
+
+        //Given
+        Set<EmployeEntity> employeEntities2 = Set.of(employeMapper.dtoToEntity(employeResponseDTO2));
+        when(employeComponent.findByEmploi(Emploi.PLANIFICATEUR)).thenReturn(employeEntities2);
+        //when
+        Set<EmployeResponseDTO> result2 = employeService.getEmployesByEmploi(Emploi.PLANIFICATEUR);
+        //then
+        assertThat(result2).hasSize(1);
+        assertThat(result2).contains(employeResponseDTO2);
 
     }
 

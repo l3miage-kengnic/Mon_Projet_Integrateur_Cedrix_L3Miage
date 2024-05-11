@@ -65,9 +65,10 @@ public class EmployeComponentTest {
         assertThat(result2.contains(employeEntity2));
         //assertDoesNotThrow(() -> employeComponent.findByEmploi(Emploi.LIVREUR));
 
-
+        //Simulation de la réponse de la BD:
+        // lorsque la requete employeRepository.findAllByEmploi(Emploi.LIVREUR) est appelée, alors renvoyer un Set vide
         when(employeRepository.findAllByEmploi(Emploi.PRODEUR)).thenReturn(Set.of());
-        //when   // lorsque lla méthode employeComponent.findByEmploi est appelée, la requete employeRepository.findAllByEmploi(Emploi.LIVREUR) doit l'etre aussi
+        //when   // lorsque la méthode employeComponent.findByEmploi est appelée, la requete employeRepository.findAllByEmploi(Emploi.LIVREUR) doit l'etre aussi
         Set<EmployeEntity> result3 = employeComponent.findByEmploi(Emploi.PRODEUR);
         //then
         assertThat(result3).hasSize(0);
