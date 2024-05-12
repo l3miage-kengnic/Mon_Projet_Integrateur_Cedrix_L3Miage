@@ -46,4 +46,4 @@ public class EntrepotResponseDTO {
 
     @Schema(description = "Position géographique de l'entrepôt")
     private GeoPosition position;*/
-}
+

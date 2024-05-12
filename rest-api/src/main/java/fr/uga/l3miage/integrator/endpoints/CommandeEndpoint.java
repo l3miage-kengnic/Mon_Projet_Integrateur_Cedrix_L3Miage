@@ -22,7 +22,7 @@ public interface CommandeEndpoint {
             description = "Liste des commandes récupérée avec succès",
             content = @Content(
                     mediaType = "application/json",
-                    schema = @Schema(implementation = CommandeResponseDTO.class)
+                    schema = @Schema(implementation = CommandeResponseDTO.class)  //**!! Attention, doit retourner un Set *****
             )
     )
     @GetMapping
@@ -34,7 +34,7 @@ public interface CommandeEndpoint {
             description = "Commande récupérée avec succès",
             content = @Content(
                     mediaType = "application/json",
-                    schema = @Schema(implementation = CommandeResponseDTO.class)
+                    schema = @Schema(implementation = CommandeResponseDTO.class) //**!! Attention, doit retourner un Set *****
             )
     )
     @GetMapping("/{reference}")
@@ -46,7 +46,7 @@ public interface CommandeEndpoint {
             description = "Commande mise à jour avec succès",
             content = @Content(
                     mediaType = "application/json",
-                    schema = @Schema(implementation = CommandeResponseDTO.class)
+                    schema = @Schema(implementation = CommandeResponseDTO.class)  //**!! Attention, doit retourner un Set *****
             )
     )
     @PutMapping("/{reference}")

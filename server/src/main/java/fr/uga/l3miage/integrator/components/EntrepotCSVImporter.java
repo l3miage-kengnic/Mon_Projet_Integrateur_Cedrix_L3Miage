@@ -55,16 +55,16 @@ public class EntrepotCSVImporter {
             e.printStackTrace(); // Gérer les exceptions liées au fichier
         }
     }*/
-<<<<<<< HEAD
+
     private final EmployeRepository employeRepository;
     @PostConstruct
     public void importEntrepotData() {
         String csvFilePath = "C:\\Users\\Pc\\OneDrive\\Bureau\\ana\\projet-integrateur-2024-serveur-springboot-l3miage-elbouchi - Copie1\\server\\src\\main\\java\\fr\\uga\\l3miage\\integrator\\CSV\\Export_Entrepôts.csv";
-=======
+
     @PostConstruct
     public void importEntrepotData() {
         String csvFilePath = "C:\\Users\\Pc\\OneDrive\\Bureau\\ana\\projet-integrateur-2024-serveur-springboot-l3miage-elbouchi - Copie\\server\\src\\main\\java\\fr\\uga\\l3miage\\integrator\\CSV\\Export_Entrepôts.csv";
->>>>>>> e10fd43872720309e2176afdd436d2f2188e1ee1
+
         String line;
         String csvSeparator = ",";
 
