@@ -4,11 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> e10fd43872720309e2176afdd436d2f2188e1ee1
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

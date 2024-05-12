@@ -11,9 +11,9 @@ public class Adresse {
     private String adresse;
     private String codePostal;
     private String ville;
-<<<<<<< HEAD
-}
-=======
+
+
+
 
     @Override
     public String toString() {
@@ -24,4 +24,4 @@ public class Adresse {
                 '}';
     }
 }
->>>>>>> e10fd43872720309e2176afdd436d2f2188e1ee1
+

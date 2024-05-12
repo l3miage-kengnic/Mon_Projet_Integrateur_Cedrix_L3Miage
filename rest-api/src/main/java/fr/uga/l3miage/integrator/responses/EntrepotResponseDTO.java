@@ -2,11 +2,10 @@ package fr.uga.l3miage.integrator.responses;
 
 //import fr.uga.l3miage.integrator.DataType.Adresse;
 //import fr.uga.l3miage.integrator.DataType.GeoPosition;
-<<<<<<< HEAD
+
 import fr.uga.l3miage.integrator.DataType.Adresse;
 import fr.uga.l3miage.integrator.DataType.GeoPosition;
-=======
->>>>>>> e10fd43872720309e2176afdd436d2f2188e1ee1
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,7 +25,7 @@ public class EntrepotResponseDTO {
     @Schema(description = "Photo de l'entrepôt")
     private String photo;
 
-<<<<<<< HEAD
+
     @Schema(description = "Adresse de l'entrepôt")
     private Adresse adresse;
 
@@ -42,11 +41,11 @@ public class EntrepotResponseDTO {
     private String employeEntityTrigramme;
 }
 //
-=======
+
     /*@Schema(description = "Adresse de l'entrepôt")
     private Adresse adresse;
 
     @Schema(description = "Position géographique de l'entrepôt")
     private GeoPosition position;*/
-}
->>>>>>> e10fd43872720309e2176afdd436d2f2188e1ee1
+
+
