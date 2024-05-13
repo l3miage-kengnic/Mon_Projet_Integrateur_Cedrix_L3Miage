@@ -2,10 +2,12 @@ package fr.uga.l3miage.integrator.components;
 
 import fr.uga.l3miage.integrator.DataType.GeoPosition;
 import fr.uga.l3miage.integrator.models.CamionEntity;
+import fr.uga.l3miage.integrator.models.ClientEntity;
 import fr.uga.l3miage.integrator.models.EntrepotEntity;
 import fr.uga.l3miage.integrator.repositories.CamionRepository;
 import fr.uga.l3miage.integrator.repositories.EntrepotRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -17,6 +19,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
+//@DependsOn(EntrepotComponent)
 public class CamionComponent {
 
     private final CamionRepository camionRepository;
@@ -65,7 +68,8 @@ public class CamionComponent {
             position.setLongitude(Double.parseDouble(fields[2].trim()));
         }
         camion.setPosition(position);
-        EntrepotEntity entrepot = entrepotRepository.findByName(fields[3].trim());
+        String name = fields[3].trim();
+        EntrepotEntity entrepot = entrepotRepository.findByName(name);
         if (entrepot != null) {
             camion.setEntrepotEntity(entrepot);
         } else {

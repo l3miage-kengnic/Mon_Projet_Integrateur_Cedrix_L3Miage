@@ -1,4 +1,4 @@
-package fr.uga.l3miage.integrator.components;
+/*package fr.uga.l3miage.integrator.components;
 
 import fr.uga.l3miage.integrator.DataType.Adresse;
 import fr.uga.l3miage.integrator.DataType.GeoPosition;
@@ -55,7 +55,7 @@ public class EntrepotCSVImporter {
             e.printStackTrace(); // Gérer les exceptions liées au fichier
         }
     }*/
-    private final EmployeRepository employeRepository;
+    /*private final EmployeRepository employeRepository;
     @PostConstruct
     public void importEntrepotData() {
         String csvFilePath = "C:\\Users\\Pc\\OneDrive\\Bureau\\ana\\projet-integrateur-2024-serveur-springboot-l3miage-elbouchi - Copie1\\server\\src\\main\\java\\fr\\uga\\l3miage\\integrator\\CSV\\Export_Entrepôts.csv";
@@ -100,3 +100,4 @@ public class EntrepotCSVImporter {
 
 }
 
+*/

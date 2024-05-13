@@ -7,5 +7,7 @@ import lombok.Data;
 public class CamionResponseDTO {
     private String immatriculation;
     private GeoPosition position;
+    private String entrepot; // Nouvelle propriété pour le nom de l'entrepôt
+
 
 }
