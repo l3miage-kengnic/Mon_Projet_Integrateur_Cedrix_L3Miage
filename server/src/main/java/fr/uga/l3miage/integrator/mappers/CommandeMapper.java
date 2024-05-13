@@ -9,6 +9,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface CommandeMapper {
     CommandeResponseDTO entityToDto(CommandeEntity entity);
+    CommandeEntity DtoToEntity(CommandeResponseDTO commandeResponseDTO);//************
 
     @Mapping(target = "reference", ignore = true)
     CommandeEntity updateRequestToEntity(CommandeUpdateRequest updateRequest);

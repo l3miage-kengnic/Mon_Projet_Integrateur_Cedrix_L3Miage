@@ -70,6 +70,6 @@ public interface EmployeEndPoints {
     Set<EmployeResponseDTO> getEmployesByRole(@PathVariable("emploi") Emploi emploi);*/
     @GetMapping("/{emploi}")
     Set<EmployeResponseDTO> getEmployesByRole(@PathVariable("emploi") String emploi);
-
+    
 }
 //

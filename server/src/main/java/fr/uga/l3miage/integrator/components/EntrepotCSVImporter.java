@@ -61,6 +61,7 @@ public class EntrepotCSVImporter {
     public void importEntrepotData() {
         String csvFilePath = "C:\\Users\\Pc\\OneDrive\\Bureau\\ana\\projet-integrateur-2024-serveur-springboot-l3miage-elbouchi - Copie1\\server\\src\\main\\java\\fr\\uga\\l3miage\\integrator\\CSV\\Export_Entrepôts.csv";
 
+    /****
     @PostConstruct
     public void importEntrepotData() {
         String csvFilePath = "C:\\Users\\Pc\\OneDrive\\Bureau\\ana\\projet-integrateur-2024-serveur-springboot-l3miage-elbouchi - Copie\\server\\src\\main\\java\\fr\\uga\\l3miage\\integrator\\CSV\\Export_Entrepôts.csv";
@@ -75,11 +76,11 @@ public class EntrepotCSVImporter {
                 String[] fields = line.split(csvSeparator);
 
                 // Check that the line contains all the necessary data
-<<<<<<< HEAD
+
                 if (fields.length < 10) {
-=======
+
                 if (fields.length < 8) {
->>>>>>> e10fd43872720309e2176afdd436d2f2188e1ee1
+
                     continue; // Ignore incomplete lines
                 }
 
@@ -113,6 +114,11 @@ public class EntrepotCSVImporter {
         }
     }
 
+
+
+    ****/
+
+    }
 
 }
 

@@ -36,7 +36,7 @@ public class CommandeService {
         if (entity != null) {
             CommandeEntity updatedEntity = commandeMapper.updateRequestToEntity(updateRequest);
             updatedEntity.setReference(reference);
-            updatedEntity = commandeComponent.updateCommande(reference, updatedEntity);
+            updatedEntity = commandeComponent.updateCommande(reference, updatedEntity);//!!!appel récursive d'un objet, et aussi implémentation pas juste selon moi
             return commandeMapper.entityToDto(updatedEntity);
         }
         throw new IllegalArgumentException("Commande with reference " + reference + " not found");
