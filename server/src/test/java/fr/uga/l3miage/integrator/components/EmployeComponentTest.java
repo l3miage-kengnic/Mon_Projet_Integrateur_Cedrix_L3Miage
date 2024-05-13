@@ -73,13 +73,30 @@ public class EmployeComponentTest {
         //then
         assertThat(result3).hasSize(0);
 
+    }
 
 
-        /*** /*** when(employeRepository.findAllByEmploi(Emploi.LIVREUR)).thenReturn(employeEntities);
-         //when-then
-         //assertDoesNotThrow(() -> employeComponent.findByEmploi(Emploi.LIVREUR));
-         assertThat(employeComponent.findByEmploi(Emploi.LIVREUR)).hasSize(2);***/
+    @Test
+    void creatEmploye(){
+        //Given
+        EmployeEntity employeEntity = EmployeEntity
+                .builder()
+                .emploi(Emploi.LIVREUR)
+                .trigramme("aaa")
+                .build();
+        EmployeEntity employeEntity1 = EmployeEntity
+                .builder()
+                .trigramme("bbb")
+                .emploi(Emploi.LIVREUR)
+                .build();
+
+        when(employeRepository.save(employeEntity)).thenReturn(employeEntity);
+        //when
+        EmployeEntity result = employeComponent.creatEmploye(employeEntity);
+        //then /********************************
+
 
     }
+
 
 }

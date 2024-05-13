@@ -101,6 +101,8 @@ import java.util.stream.Collectors;
 import fr.uga.l3miage.integrator.components.EmployeComponent;
 import fr.uga.l3miage.integrator.enums.Emploi;
 import fr.uga.l3miage.integrator.mappers.EmployeMapper;
+import fr.uga.l3miage.integrator.models.EmployeEntity;
+import fr.uga.l3miage.integrator.requests.EmployeCreationRequest;
 import fr.uga.l3miage.integrator.responses.EmployeResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -135,5 +137,15 @@ public class EmployeService {
          employeResponseDTOSet.add(employeMapper.entityToDto(employeEntity));
          }
          return employeResponseDTOSet;**********/
+    }
+
+
+    public EmployeResponseDTO creatEmploye(EmployeCreationRequest employeCreationRequest){
+        EmployeEntity employeEntity = employeMapper.requestToEntity(employeCreationRequest);
+        employeEntity.setTourneeEntities(
+                employeCreationRequest.getTournees().stream().map(employeMapper::stringToEntiy).collect(Collectors.toSet())
+        );
+        employeComponent.creatEmploye(employeEntity);
+        return employeMapper.entityToDto(employeEntity);
     }
 }

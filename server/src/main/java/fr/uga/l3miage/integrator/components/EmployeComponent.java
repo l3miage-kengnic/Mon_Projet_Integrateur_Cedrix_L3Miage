@@ -33,4 +33,8 @@ public class EmployeComponent {
         return employeRepository.findAllByEmploi(emploi);// Récupère les employés ayant le rôle donné
     }
 
+    public EmployeEntity  creatEmploye(EmployeEntity employeEntity){
+        return employeRepository.save(employeEntity);
+    }
+
 }

@@ -1,6 +1,8 @@
 package fr.uga.l3miage.integrator.mappers;
 
 import fr.uga.l3miage.integrator.models.EmployeEntity;
+import fr.uga.l3miage.integrator.models.TourneeEntity;
+import fr.uga.l3miage.integrator.requests.EmployeCreationRequest;
 import fr.uga.l3miage.integrator.responses.EmployeResponseDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -63,4 +65,12 @@ public interface EmployeMapper {
     /**@Mapping(source = "photo", target = "photo") ***/
     @Mapping(source = "entrepot", target = "entrepotEntity.name") // Correction du nom
     EmployeEntity dtoToEntity(EmployeResponseDTO employeResponseDTO);
+
+
+    @Mapping(target="tourneeEntities", source ="tournees")
+    EmployeEntity requestToEntity(EmployeCreationRequest employeCreationRequest);
+
+    @Mapping(target = "TourneeEntity.reference")
+    TourneeEntity stringToEntiy(String reference);
+
 }

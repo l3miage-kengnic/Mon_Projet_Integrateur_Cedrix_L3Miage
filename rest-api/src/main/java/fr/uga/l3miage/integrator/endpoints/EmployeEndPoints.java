@@ -1,6 +1,7 @@
 package fr.uga.l3miage.integrator.endpoints;
 
 import fr.uga.l3miage.integrator.enums.Emploi;
+import fr.uga.l3miage.integrator.requests.EmployeCreationRequest;
 import fr.uga.l3miage.integrator.responses.EmployeResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -70,6 +71,8 @@ public interface EmployeEndPoints {
     Set<EmployeResponseDTO> getEmployesByRole(@PathVariable("emploi") Emploi emploi);*/
     @GetMapping("/{emploi}")
     Set<EmployeResponseDTO> getEmployesByRole(@PathVariable("emploi") String emploi);
-    
+
+    @PostMapping("/create")
+    EmployeResponseDTO creatEmploye(@RequestBody EmployeCreationRequest employeCreationRequest);
+
 }
-//
