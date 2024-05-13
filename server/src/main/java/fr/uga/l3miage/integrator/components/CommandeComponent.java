@@ -107,7 +107,7 @@ public class CommandeComponent {
         // Add other fields as per your requirement
 
         String email = fields[6].trim();
-        System.out.println("Email extracted: " + email);
+        //System.out.println("Email extracted: " + email);
         ClientEntity client = clientRepository.findByEmail(email);
         if (client != null) {
             commande.setClientEntity(client);

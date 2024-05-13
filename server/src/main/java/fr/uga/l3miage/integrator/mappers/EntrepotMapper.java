@@ -11,7 +11,7 @@ public interface EntrepotMapper {
 
     //@Mapping(source = "employeEntity", target = "employe")
     //@Mapping(source = "camionEntities", target = "camions")
-    @Mapping(source = "employeEntity.trigramme", target = "employeEntityTrigramme")
+    //@Mapping(source = "employeEntity.trigramme", target = "employeEntityTrigramme")
 
     EntrepotResponseDTO entityToDto(EntrepotEntity entity);
     Adresse dtoToEntity(Adresse adresse);
