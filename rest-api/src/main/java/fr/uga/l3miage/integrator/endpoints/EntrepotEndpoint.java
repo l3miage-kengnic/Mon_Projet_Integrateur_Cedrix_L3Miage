@@ -17,6 +17,8 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8080")
 
+//@CrossOrigin(origins = "http://localhost:8080")
+
 public interface EntrepotEndpoint {
 
     @Operation(description = "Récupérer tous les entrepôts")

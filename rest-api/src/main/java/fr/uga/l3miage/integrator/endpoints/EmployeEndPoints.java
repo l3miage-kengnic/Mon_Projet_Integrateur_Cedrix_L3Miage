@@ -15,7 +15,8 @@ import java.util.Set;
 // Annotation pour indiquer que cette classe est un contrôleur REST
 @RestController
 // Annotation pour permettre des requêtes cross-origin depuis "http://localhost:8080"
-@CrossOrigin(origins = "http://localhost:8080")
+//@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin("*")
 // Annotation pour définir la route de base pour tous les endpoints
 @RequestMapping("/employes")
 public interface EmployeEndPoints {
@@ -72,4 +73,3 @@ public interface EmployeEndPoints {
     Set<EmployeResponseDTO> getEmployesByRole(@PathVariable("emploi") String emploi);
 
 }
-//

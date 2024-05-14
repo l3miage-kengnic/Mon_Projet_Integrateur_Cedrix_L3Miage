@@ -8,6 +8,7 @@ import fr.uga.l3miage.integrator.repositories.ClientRepository;
 import fr.uga.l3miage.integrator.repositories.CommandeRepository;
 import fr.uga.l3miage.integrator.responses.CommandeResponseDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -28,8 +29,11 @@ import java.util.regex.Pattern;
 
 @Component
 @RequiredArgsConstructor
+@DependsOn("importClientsDepuisCSV")
+
 public class CommandeComponent {
     private final CommandeRepository commandeRepository;
+    private final ClientRepository clientRepository;
 
     public List<CommandeEntity> getAllCommandes() {
         return commandeRepository.findAll();
@@ -101,6 +105,15 @@ public class CommandeComponent {
         }
         commande.setDateDeCommande(parseDate(fields[2]));
         // Add other fields as per your requirement
+
+        String email = fields[6].trim();
+        //System.out.println("Email extracted: " + email);
+        ClientEntity client = clientRepository.findByEmail(email);
+        if (client != null) {
+            commande.setClientEntity(client);
+        } else {
+            System.err.println("Client not found with email : " + email);
+        }
         return commande;
     }
 

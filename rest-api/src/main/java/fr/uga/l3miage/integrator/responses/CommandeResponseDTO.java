@@ -24,6 +24,11 @@ public class CommandeResponseDTO {
     private int dureeDeLivraison;
 
     //private Adresse adresseClient; // Nouveau champ
-//
+    //private String clientEmail;
+
+    private ClientResponseDTO client; // Ajouté ici
+
+
+
 
 }

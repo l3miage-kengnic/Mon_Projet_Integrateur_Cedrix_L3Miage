@@ -24,4 +24,3 @@ public interface LivraisonEndpoint {
     @GetMapping("/{reference}/commandes")
     ResponseEntity<List<CommandeResponseDTO>> getCommandesByLivraison(@PathVariable String reference);
 }
-//

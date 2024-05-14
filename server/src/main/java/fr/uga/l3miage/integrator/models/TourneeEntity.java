@@ -35,8 +35,8 @@ public class TourneeEntity {
 
     @ManyToMany(mappedBy = "tourneeEntities",fetch= FetchType.LAZY)
     private Collection<EmployeEntity> employeEntities=new ArrayList<>();
-    //@OneToMany(mappedBy="tourneeEntity")
-    //private Set<LivraisonEntity> livraisonEntities;
+    @OneToMany(mappedBy="tourneeEntity")
+    private Set<LivraisonEntity> livraisonEntities;
 
 
 

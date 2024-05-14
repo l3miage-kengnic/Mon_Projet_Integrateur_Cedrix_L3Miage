@@ -16,7 +16,6 @@ public class EntrepotService {
     private final EntrepotComponent entrepotComponent;
     private final EntrepotMapper entrepotMapper;
 
-<<<<<<< HEAD
     /*public List<EntrepotResponseDTO> getAllEntrepots() {
         return entrepotComponent.getAllEntrepots()
                 .stream()
@@ -27,12 +26,6 @@ public class EntrepotService {
         return entrepotComponent.getAllEntrepots()
                 .stream()
                 .map(entrepotMapper::entityToDto) // Le mapper inclut maintenant l'employé
-=======
-    public List<EntrepotResponseDTO> getAllEntrepots() {
-        return entrepotComponent.getAllEntrepots()
-                .stream()
-                .map(entrepotMapper::entityToDto)
->>>>>>> e10fd43872720309e2176afdd436d2f2188e1ee1
                 .collect(Collectors.toList());
     }
 }

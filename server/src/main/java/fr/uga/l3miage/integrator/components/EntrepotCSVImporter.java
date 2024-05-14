@@ -1,4 +1,4 @@
-package fr.uga.l3miage.integrator.components;
+/*package fr.uga.l3miage.integrator.components;
 
 import fr.uga.l3miage.integrator.DataType.Adresse;
 import fr.uga.l3miage.integrator.DataType.GeoPosition;
@@ -55,16 +55,10 @@ public class EntrepotCSVImporter {
             e.printStackTrace(); // Gérer les exceptions liées au fichier
         }
     }*/
-<<<<<<< HEAD
-    private final EmployeRepository employeRepository;
+    /*private final EmployeRepository employeRepository;
     @PostConstruct
     public void importEntrepotData() {
         String csvFilePath = "C:\\Users\\Pc\\OneDrive\\Bureau\\ana\\projet-integrateur-2024-serveur-springboot-l3miage-elbouchi - Copie1\\server\\src\\main\\java\\fr\\uga\\l3miage\\integrator\\CSV\\Export_Entrepôts.csv";
-=======
-    @PostConstruct
-    public void importEntrepotData() {
-        String csvFilePath = "C:\\Users\\Pc\\OneDrive\\Bureau\\ana\\projet-integrateur-2024-serveur-springboot-l3miage-elbouchi - Copie\\server\\src\\main\\java\\fr\\uga\\l3miage\\integrator\\CSV\\Export_Entrepôts.csv";
->>>>>>> e10fd43872720309e2176afdd436d2f2188e1ee1
         String line;
         String csvSeparator = ",";
 
@@ -75,11 +69,7 @@ public class EntrepotCSVImporter {
                 String[] fields = line.split(csvSeparator);
 
                 // Check that the line contains all the necessary data
-<<<<<<< HEAD
                 if (fields.length < 10) {
-=======
-                if (fields.length < 8) {
->>>>>>> e10fd43872720309e2176afdd436d2f2188e1ee1
                     continue; // Ignore incomplete lines
                 }
 
@@ -95,18 +85,12 @@ public class EntrepotCSVImporter {
                 entrepot.setAdresse(adresse); // Assign the Adresse object
                 entrepot.setPosition(position); // Assign the GeoPosition object
 
-<<<<<<< HEAD
                 // Search for employee by trigramme
                 String employeeTrigramme = fields[8];
                 EmployeEntity employe = employeRepository.findByTrigramme(employeeTrigramme);
                 entrepot.setEmployeEntity(employe); // Set the employee entity
 
                 entrepotRepository.save(entrepot); // Save the warehouse
-=======
-                entrepotRepository.save(entrepot); // Save the warehouse
-
-                System.out.println("Warehouse added: " + fields[0]); // Add a log for tracking
->>>>>>> e10fd43872720309e2176afdd436d2f2188e1ee1
             }
         } catch (IOException e) {
             e.printStackTrace(); // Handle file-related exceptions
@@ -116,3 +100,4 @@ public class EntrepotCSVImporter {
 
 }
 
+*/

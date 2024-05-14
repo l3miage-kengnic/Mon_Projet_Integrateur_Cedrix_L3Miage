@@ -53,4 +53,3 @@ public interface CommandeEndpoint {
     ResponseEntity<CommandeResponseDTO> updateCommande(@PathVariable("reference") String reference,
                                                        @RequestBody CommandeUpdateRequest updateRequest);
 }
-//
