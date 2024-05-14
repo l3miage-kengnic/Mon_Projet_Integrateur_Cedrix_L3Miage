@@ -63,4 +63,20 @@ public class TourComponentTest {
         assertThat(result).isEqualTo(tourneeEntity);
     }
 
+    @Test
+    void creatTourneeTest(){
+        //Given
+        TourneeEntity tourneeEntity = TourneeEntity
+                .builder()
+                .reference("aaa")
+                .build();
+
+        when(tourneeRepository.save(tourneeEntity)).thenReturn(tourneeEntity);
+        //when
+        TourneeEntity result = tourneeComponent.createTournee(tourneeEntity);
+        //then
+        assertThat(result).isEqualTo(tourneeEntity);
+
+    }
+
 }

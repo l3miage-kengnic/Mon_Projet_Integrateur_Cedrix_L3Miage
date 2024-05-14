@@ -1,5 +1,6 @@
 package fr.uga.l3miage.integrator.requests;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;  // Validation des chaînes non vides
@@ -9,8 +10,10 @@ import java.util.Date;
 
 
 @Data
+@Builder
 public class TourneeCreationRequest {
 
+    final  private String reference;
 
     private final String nom;
     private final String description;

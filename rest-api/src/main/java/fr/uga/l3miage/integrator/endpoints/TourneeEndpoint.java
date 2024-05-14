@@ -22,10 +22,12 @@ public interface TourneeEndpoint {
     @ApiResponse(responseCode = "200", description = "Tournée récupérée avec succès")
     ResponseEntity<TourneeResponseDTO> getTournee(@PathVariable String refTournee);
 
-    @PostMapping("/create")
+
     @Operation(description = "Créer une nouvelle tournée")
     @ApiResponse(responseCode = "201", description = "Tournée créée avec succès")
-    ResponseEntity<Void> createTournee(@RequestBody TourneeCreationRequest request);
+    @PostMapping("/create")
+    @ResponseStatus(HttpStatus.CREATED)
+    void createTournee(@RequestBody TourneeCreationRequest request);
 
     @PutMapping("/update/{refTournee}")
     @Operation(description = "Mettre à jour une tournée existante")

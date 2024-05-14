@@ -21,9 +21,10 @@ public class TourneeService {
         return tourneeMapper.entityToDto(entity);
     }
 
-    public void createTournee(TourneeCreationRequest request) {
+    public TourneeResponseDTO createTournee(TourneeCreationRequest request) {
         TourneeEntity tourneeEntity = tourneeMapper.createRequestToEntity(request);
-        tourneeComponent.createTournee(tourneeEntity);
+        TourneeResponseDTO response = tourneeMapper.entityToDto(tourneeComponent.createTournee(tourneeEntity));
+        return response;
     }
 
     public void updateTournee(String refTournee, TourneeUpdateRequest request) {

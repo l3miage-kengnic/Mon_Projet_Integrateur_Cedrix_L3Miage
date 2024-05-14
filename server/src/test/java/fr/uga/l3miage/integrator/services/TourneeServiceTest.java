@@ -3,6 +3,7 @@ package fr.uga.l3miage.integrator.services;
 import fr.uga.l3miage.integrator.components.TourneeComponent;
 import fr.uga.l3miage.integrator.mappers.TourneeMapper;
 import fr.uga.l3miage.integrator.models.TourneeEntity;
+import fr.uga.l3miage.integrator.requests.TourneeCreationRequest;
 import fr.uga.l3miage.integrator.responses.TourneeResponseDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,4 +39,21 @@ public class TourneeServiceTest {
         //then
         assertThat(result).isEqualTo(tourneeMapper.entityToDto(tourneeEntity));
     }
+
+
+    @Test
+    void  creatTourneeTest(){
+        //Given
+        TourneeCreationRequest tourneeCreationRequest = TourneeCreationRequest
+                .builder()
+                .reference("aaa")
+                .build();
+        TourneeEntity tourneeEntity = tourneeMapper.createRequestToEntity(tourneeCreationRequest);
+        when(tourneeComponent.createTournee(tourneeEntity)).thenReturn(tourneeEntity);
+        //when
+        TourneeResponseDTO result = tourneeService.createTournee(tourneeCreationRequest);
+        //then
+        assertThat(result).isEqualTo( tourneeMapper.entityToDto(tourneeEntity));
+    }
+
 }

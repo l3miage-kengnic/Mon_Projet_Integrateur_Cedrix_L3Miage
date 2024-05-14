@@ -25,9 +25,9 @@ public class TourneeController implements TourneeEndpoint {
     }
 
     @Override
-    public ResponseEntity<Void> createTournee(TourneeCreationRequest request) {
-        tourneeService.createTournee(request);
-        return ResponseEntity.status(201).build();
+    public void createTournee(TourneeCreationRequest request) {
+       tourneeService.createTournee(request);
+        //return ResponseEntity.status(201).build();
     }
 
     @Override
