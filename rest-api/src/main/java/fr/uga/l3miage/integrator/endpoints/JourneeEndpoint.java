@@ -45,7 +45,8 @@ public interface JourneeEndpoint {
             responseCode = "200",
             description = "Journée mise à jour avec succès"
     )
-    @PutMapping("/{reference}")
+    //@PutMapping("/{reference}")
+    @PutMapping("/update/{reference}")  // c'est mieux le chemin "/update/{reference}"
     ResponseEntity<Void> updateJournee(@PathVariable("reference") String reference,
                                        @RequestBody JourneeUpdateRequest updateRequest);
 }

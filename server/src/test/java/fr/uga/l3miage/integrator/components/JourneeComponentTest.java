@@ -54,4 +54,74 @@ public class JourneeComponentTest {
         assertThat(result).isEqualTo(journeeEntity);
           //si la méthode journeeComponent.createJournee(journeeEntity) est bien implémenter, elle doit retourner journeeEntity
     }
+
+
+    @Test
+    void updateJourneeTest(){
+        //Given
+        Optional<JourneeEntity> journeeEntity = Optional.ofNullable(JourneeEntity
+                .builder()
+                .reference("aaa")
+                .montant(15.0)
+                .build());
+        JourneeEntity journeeEntity1 =JourneeEntity
+                .builder()
+                .reference("bbb")
+                .montant(20.0)
+                .build();
+        String reference = journeeEntity.get().getReference();
+
+        when(journeeRepository.findById(reference)).thenReturn(journeeEntity);
+
+        Optional<JourneeEntity> journeeEntityExp = Optional.ofNullable(JourneeEntity
+                .builder()
+                .reference("aaa")
+                .montant(20.0)
+                .build());
+
+        when(journeeRepository.save(journeeEntity.get())).thenReturn(journeeEntityExp.get());
+
+        //when
+        Optional<JourneeEntity> result = journeeComponent.updateJournee(reference, journeeEntity1);
+        //then
+        assertThat(result).isEqualTo(journeeEntityExp);
+    }
+
+
+    /*********void updateJourneeTest(){
+     //Given
+     Optional<JourneeEntity> journeeEntity = Optional.ofNullable(JourneeEntity
+     .builder()
+     .reference("aaa")
+     .montant(15.0)
+     .build());
+     JourneeEntity journeeEntity1 =JourneeEntity
+     .builder()
+     .reference("bbb")
+     .montant(20.0)
+     .build();
+     String reference = journeeEntity.get().getReference();
+
+     when(journeeRepository.findById(reference)).thenReturn(journeeEntity);
+     journeeEntity1.setMontant(20.0);
+
+     Optional<JourneeEntity> journeeEntityExp = Optional.ofNullable(JourneeEntity
+     .builder()
+     .reference("aaa")
+     .montant(0.0)
+     .build());
+
+     double montant=20.0;
+     when(journeeEntity.get().setMontant(20.0)).then( journeeEntityExp.get().setMontant(20.0));
+
+     when(journeeRepository.save(journeeEntity.get())).thenReturn(journeeEntityExp.get());
+
+     //when
+     Optional<JourneeEntity> result = journeeComponent.updateJournee(reference, journeeEntity1);
+     //then
+     assertThat(result).isEqualTo(journeeEntityExp);
+     }*********/
+
+
+
 }

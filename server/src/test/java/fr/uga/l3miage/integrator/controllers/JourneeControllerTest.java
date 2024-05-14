@@ -5,6 +5,7 @@ import fr.uga.l3miage.integrator.mappers.JourneeMapper;
 import fr.uga.l3miage.integrator.models.JourneeEntity;
 import fr.uga.l3miage.integrator.repositories.JourneeRepository;
 import fr.uga.l3miage.integrator.requests.JourneeCreationRequest;
+import fr.uga.l3miage.integrator.requests.JourneeUpdateRequest;
 import fr.uga.l3miage.integrator.responses.JourneeResponseDTO;
 import fr.uga.l3miage.integrator.services.JourneeService;
 import org.junit.jupiter.api.AfterEach;
@@ -79,5 +80,21 @@ public class JourneeControllerTest {
         verify(journeeComponent, times(1)).createJournee(journeeMapper.createRequestToEntity(request));
 
     }
+
+
+    @Test
+    void updateJourneeTest(){
+        final HttpHeaders headers = new HttpHeaders();
+
+        final JourneeUpdateRequest request = JourneeUpdateRequest
+                .builder()
+                .montant(20.0)
+                .build();
+
+        ParameterizedTypeReference<Void> responseType = new ParameterizedTypeReference<Void>() {};
+        ResponseEntity<Void> response = testRestTemplate.exchange("/journees/update/{aaa}", HttpMethod.PUT, new HttpEntity<>(request,headers), responseType );
+
+    }
+
 
 }
