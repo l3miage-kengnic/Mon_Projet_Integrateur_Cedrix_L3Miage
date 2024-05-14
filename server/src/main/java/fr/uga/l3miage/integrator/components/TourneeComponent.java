@@ -25,7 +25,11 @@ public class TourneeComponent {
     }
 
     public TourneeEntity updateTournee(String refTournee, TourneeEntity updatedTournee) {
-        return tourneeRepository.save(updatedTournee);
+        //return tourneeRepository.save(updatedTournee);
+        TourneeEntity tourneeEntity = tourneeRepository.findById(refTournee).orElseThrow(); //##Exception?
+        updatedTournee.setReference(refTournee);
+        tourneeRepository.delete(tourneeEntity);
+        return  tourneeRepository.save(updatedTournee);
     }
     public void deleteTournee(TourneeEntity tournee) {
         tourneeRepository.delete(tournee); // Supprime la tournée de la base de données

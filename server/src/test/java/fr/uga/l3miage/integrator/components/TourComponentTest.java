@@ -79,4 +79,30 @@ public class TourComponentTest {
 
     }
 
+
+    @Test
+    void updateTourneeTest(){
+        //Given
+        TourneeEntity tourneeEntity = TourneeEntity
+                .builder()
+                .reference("aaa")
+                .build();
+        TourneeEntity updatedtourneeEntity = TourneeEntity
+                .builder()
+                .reference("bbb")
+                .montant(20.0)
+                .build();
+
+        String reference = tourneeEntity.getReference();
+
+
+        when(tourneeRepository.findById(reference).orElseThrow()).thenReturn(tourneeEntity);
+        when(tourneeRepository.save(tourneeEntity)).thenReturn(tourneeEntity);
+        //when
+        TourneeEntity result = tourneeComponent.updateTournee(reference,tourneeEntity);
+        //then
+        assertThat(result).isEqualTo(tourneeEntity);
+
+    }
+
 }
