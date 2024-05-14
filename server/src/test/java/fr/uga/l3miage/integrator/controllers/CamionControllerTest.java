@@ -14,6 +14,7 @@ import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
 
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -43,7 +44,11 @@ public class CamionControllerTest {
     void getAllCamionsTest(){
         final HttpHeaders headers = new HttpHeaders();
 
+        //sert pour preciser le type de l'objet renvoyé lors de la requete
+        ParameterizedTypeReference<List<CamionResponseDTO>> responseType = new ParameterizedTypeReference<List<CamionResponseDTO>>() {};
+
         //when
-        ResponseEntity<CamionResponseDTO> response = testRestTemplate.exchange("http://localhost:8080/camions/getAll", HttpMethod.GET, new HttpEntity<>(headers), CamionResponseDTO.class);
+        ResponseEntity<List<CamionResponseDTO>> response = testRestTemplate.exchange("/camions/getAll", HttpMethod.GET, new HttpEntity<>(headers), responseType);
+
     }
 }
