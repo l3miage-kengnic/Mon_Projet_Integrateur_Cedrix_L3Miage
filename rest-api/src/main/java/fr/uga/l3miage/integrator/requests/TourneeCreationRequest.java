@@ -12,8 +12,8 @@ import java.util.Date;
 public class TourneeCreationRequest {
 
 
-    private String nom;
-    private String description;
+    private final String nom;
+    private final String description;
 
     // Ajoutez d'autres champs pour la mise à jour de la tournée
 

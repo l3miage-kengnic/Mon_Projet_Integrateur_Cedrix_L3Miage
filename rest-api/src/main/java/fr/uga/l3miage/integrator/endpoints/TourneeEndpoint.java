@@ -6,16 +6,18 @@ import fr.uga.l3miage.integrator.responses.TourneeResponseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 
-@RequestMapping("tournees")
+@RequestMapping("/tournees")
 @Tag(name = "Tournee Endpoint", description = "Endpoints pour la gestion des tournées")
 public interface TourneeEndpoint {
 
     @GetMapping("/{refTournee}")
+    @ResponseStatus(HttpStatus.OK)
     @Operation(description = "Récupérer une tournée par sa référence")
     @ApiResponse(responseCode = "200", description = "Tournée récupérée avec succès")
     ResponseEntity<TourneeResponseDTO> getTournee(@PathVariable String refTournee);

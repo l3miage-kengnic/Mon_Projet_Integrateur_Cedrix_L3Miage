@@ -10,11 +10,11 @@ import java.util.Date;
 @Builder //Builder ajouté
 public class JourneeUpdateRequest {
 
-    private Date date;
+    private final Date date;
 
-    private Double distanceAParcourir;
+    private final Double distanceAParcourir;
 
-    private Double montant;
+    private final Double montant;
 
-    private Integer tdmTheorique;
+    private final Integer tdmTheorique;
 }

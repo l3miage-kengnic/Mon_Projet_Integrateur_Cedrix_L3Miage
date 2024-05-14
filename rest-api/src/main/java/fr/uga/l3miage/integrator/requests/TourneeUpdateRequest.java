@@ -6,16 +6,16 @@ import java.util.Date;
 
 @Data
 public class TourneeUpdateRequest {
-        private Date date;
+        private final Date date;
 
-        private Double distanceAParcourir;
+        private final Double distanceAParcourir;
 
-        private Double montant;
+        private final Double montant;
 
-        private Integer tdmTheorique;
+        private final Integer tdmTheorique;
 
-        private String nom;
-        private String description;
+        private final String nom;
+        private final String description;
 
 }
 

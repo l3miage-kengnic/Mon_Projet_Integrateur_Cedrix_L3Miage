@@ -11,17 +11,17 @@ import java.util.Date;
 public class JourneeCreationRequest {
 
     @NotNull
-    private String reference;
+    final private String reference;
 
     @NotNull
-    private Date date;
+    final  private Date date;
 
     @NotNull
-    private double distanceAParcourir;
+    final private double distanceAParcourir;
 
     @NotNull
-    private double montant;
+    final private double montant;
 
     @NotNull
-    private int tdmTheorique;
+    final private int tdmTheorique;
 }
