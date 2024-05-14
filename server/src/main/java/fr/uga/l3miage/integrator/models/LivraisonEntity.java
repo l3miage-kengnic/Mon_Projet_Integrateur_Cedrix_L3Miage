@@ -34,8 +34,8 @@ public class LivraisonEntity {
     private Date heureDeLivraisonEffective;
     private int tdmEffectif;
 
-    //@ManyToOne
-    //private TourneeEntity tourneeEntity;
+    @ManyToOne
+    private TourneeEntity tourneeEntity;
     //@OneToMany(mappedBy = "livraisonEntity")
     //private Set<CommandeEntity> commandeEntities;
 

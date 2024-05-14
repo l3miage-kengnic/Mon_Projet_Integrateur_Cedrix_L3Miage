@@ -41,9 +41,10 @@ public class importClientsDepuisCSV {
         }
     }
 
+
     private ClientEntity mapLigneVersClientEntity(String ligne) {
-        String[] fields = ligne.split(",");
-        if (fields.length < 8) {//9 probleme de commande
+        String[] fields = ligne.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
+        if (fields.length < 9) {
             throw new IllegalArgumentException("Données CSV incomplètes : " + ligne);
         }
         ClientEntity client = new ClientEntity();
@@ -52,9 +53,11 @@ public class importClientsDepuisCSV {
         client.setNom(fields[2].trim());
         Adresse adresse = new Adresse(fields[3].trim(), fields[4].trim(), fields[5].trim());
         client.setAdresse(adresse);
-        GeoPosition position = new GeoPosition(Double.parseDouble(fields[6]), Double.parseDouble(fields[7]));
+        GeoPosition position = new GeoPosition(Double.parseDouble(fields[6].replace("/", "")), Double.parseDouble(fields[7].replace("/", "")));
         client.setPosition(position);
         // Add other fields as per your requirement
         return client;
     }
+
+
 }

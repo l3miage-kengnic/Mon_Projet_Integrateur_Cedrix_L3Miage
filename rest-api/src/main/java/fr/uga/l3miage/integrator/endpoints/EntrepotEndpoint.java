@@ -14,7 +14,11 @@ import java.util.List;
 @RequestMapping("/entrepots")
 
 //@CrossOrigin(origins = "http://localhost:8080")
+
 @CrossOrigin(origins = "http://localhost:8080")
+
+//@CrossOrigin(origins = "http://localhost:8080")
+
 public interface EntrepotEndpoint {
 
     @Operation(description = "Récupérer tous les entrepôts")

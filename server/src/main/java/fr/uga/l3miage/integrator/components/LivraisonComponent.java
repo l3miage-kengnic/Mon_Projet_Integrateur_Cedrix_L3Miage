@@ -553,10 +553,14 @@ public class LivraisonComponent {
     /**
     @PostConstruct
     public void importCommandesDepuisCSV() {
+<<<<<<< HEAD
 
         String csvFilePath = "C:\\Users\\Pc\\OneDrive\\Bureau\\ana\\projet-integrateur-2024-serveur-springboot-l3miage-elbouchi - Copie1\\server\\src\\main\\java\\fr\\uga\\l3miage\\integrator\\CSV\\Export_Commandes.csv"; // Ajustez le chemin
 
         String csvFilePath = "C:\\Users\\Pc\\OneDrive\\Bureau\\ana\\projet-integrateur-2024-serveur-springboot-l3miage-elbouchi - Copie\\server\\src\\main\\java\\fr\\uga\\l3miage\\integrator\\CSV\\Export_Commandes.csv"; // Ajustez le chemin
+=======
+        String csvFilePath = "C:\\Users\\Pc\\OneDrive\\Bureau\\ana\\projet-integrateur-2024-serveur-springboot-l3miage-elbouchi - Copie1\\server\\src\\main\\java\\fr\\uga\\l3miage\\integrator\\CSV\\Export_Commandes.csv"; // Ajustez le chemin
+>>>>>>> SpringBoot
 
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFilePath))) {

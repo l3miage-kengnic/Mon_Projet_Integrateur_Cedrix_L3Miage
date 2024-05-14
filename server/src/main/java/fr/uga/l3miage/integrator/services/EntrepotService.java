@@ -24,13 +24,11 @@ public class EntrepotService {
                 .collect(Collectors.toList());
     }*/
 
-
     public List<EntrepotResponseDTO> getAllEntrepots() {
         return entrepotComponent.getAllEntrepots()
                 .stream()
                 .map(entrepotMapper::entityToDto) // Le mapper inclut maintenant l'employé
                 .collect(Collectors.toList());
-
 
         /**
         public List<EntrepotResponseDTO> getAllEntrepots () {

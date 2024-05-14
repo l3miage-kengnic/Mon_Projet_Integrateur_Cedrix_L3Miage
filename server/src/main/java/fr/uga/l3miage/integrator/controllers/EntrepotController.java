@@ -8,6 +8,9 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -36,5 +39,6 @@ public class EntrepotController implements EntrepotEndpoint {
             List<EntrepotResponseDTO> responseDTOs = entrepotService.getAllEntrepots();
             return ResponseEntity.ok(responseDTOs);
         }  ***/
+
     }
 }

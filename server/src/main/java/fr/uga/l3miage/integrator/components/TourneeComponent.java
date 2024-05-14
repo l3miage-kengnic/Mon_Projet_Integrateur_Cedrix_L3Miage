@@ -31,6 +31,7 @@ public class TourneeComponent {
         tourneeRepository.delete(tournee); // Supprime la tournée de la base de données
     }
 }
+
 /*
 public void deleteTournee(String refTournee) {
     tourneeRepository.deleteById(refTournee);  // Supprimer une tournée par référence

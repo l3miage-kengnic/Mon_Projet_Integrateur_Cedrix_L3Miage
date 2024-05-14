@@ -1,17 +1,17 @@
 package fr.uga.l3miage.integrator.models;
 
 import fr.uga.l3miage.integrator.DataType.GeoPosition;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Data
+//@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class CamionEntity {
     @Id
     private String immatriculation;

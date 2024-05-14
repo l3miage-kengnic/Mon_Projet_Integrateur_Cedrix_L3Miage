@@ -27,7 +27,7 @@ public class ClientEntity {
     private Adresse adresse;
     @Embedded
     private GeoPosition position;
-    @OneToMany(mappedBy = "clientEntity")
+    @OneToMany(mappedBy = "clientEntity", cascade = CascadeType.ALL)
     private Set<CommandeEntity> commandes;
 
     public double getMontantTotal() {
