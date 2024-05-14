@@ -18,6 +18,7 @@ import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
@@ -92,7 +93,11 @@ public class JourneeControllerTest {
                 .build();
 
         ParameterizedTypeReference<Void> responseType = new ParameterizedTypeReference<Void>() {};
-        ResponseEntity<Void> response = testRestTemplate.exchange("/journees/update/{aaa}", HttpMethod.PUT, new HttpEntity<>(request,headers), responseType );
+        ResponseEntity<Void> response = testRestTemplate.exchange("/journees/update/aaa", HttpMethod.PUT, new HttpEntity<>(request,headers), responseType );
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        verify(journeeService, times(1)).updateJournee("aaa",request); // verifier que creatJournee("aaa") a bien été appelé 1 fois dans la classe JourneeService, pour cette requete
+        verify(journeeComponent, times(1)).updateJournee("aaa",journeeMapper.updateEntityFromRequest(request));
 
     }
 

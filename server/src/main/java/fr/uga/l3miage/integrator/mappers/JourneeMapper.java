@@ -15,5 +15,5 @@ public interface JourneeMapper {
 
     JourneeEntity createRequestToEntity(JourneeCreationRequest request);
     @Mapping(target = "reference", ignore = true) // Ignorer la mise à jour de la référence
-    JourneeEntity updateEntityFromRequest(@MappingTarget JourneeEntity entity, JourneeUpdateRequest request);
+    JourneeEntity updateEntityFromRequest( JourneeUpdateRequest request);
 }

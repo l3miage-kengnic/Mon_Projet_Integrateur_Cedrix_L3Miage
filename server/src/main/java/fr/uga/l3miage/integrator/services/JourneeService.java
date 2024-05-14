@@ -37,7 +37,7 @@ public class JourneeService {
     public Optional<JourneeEntity> updateJournee(String reference, JourneeUpdateRequest request) {
         Optional<JourneeEntity> optionalJourneeEntity = journeeRepository.findById(reference);
         if (optionalJourneeEntity.isPresent()) {
-            JourneeEntity updatedEntity = journeeMapper.updateEntityFromRequest(optionalJourneeEntity.get(), request);
+            JourneeEntity updatedEntity = journeeMapper.updateEntityFromRequest( request);
             journeeRepository.save(updatedEntity);
         }
         return optionalJourneeEntity;
