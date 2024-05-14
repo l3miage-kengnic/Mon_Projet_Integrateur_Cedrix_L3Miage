@@ -40,17 +40,9 @@ public class EntrepotResponseDTO {
 
     @Schema(description = "Liste des camions associés à l'entrepôt")
     private List<CamionResponseDTO> camions;*/
-    //@Schema(description = "Trigramme de l'employé")
-    //private String employeEntityTrigramme;
+
+    @Schema(description = "Trigramme de l'employé")
+    private String employeEntityTrigramme;
 }
-
-//
-
-    /*@Schema(description = "Adresse de l'entrepôt")
-    private Adresse adresse;
-
-    @Schema(description = "Position géographique de l'entrepôt")
-    private GeoPosition position;*/
-
 
 

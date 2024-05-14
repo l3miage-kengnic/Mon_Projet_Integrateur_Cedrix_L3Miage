@@ -2,6 +2,7 @@ package fr.uga.l3miage.integrator.models;
 
 import fr.uga.l3miage.integrator.enums.EtatsDeCommande;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,7 @@ import java.util.Date;
 
 @Entity
 @Data
+@Builder // ajouté Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class CommandeEntity {
@@ -33,6 +35,9 @@ public class CommandeEntity {
     @JoinColumn(name = "livraison_id")
     private LivraisonEntity livraisonEntity;
     @ManyToOne
+
+    @JoinColumn(name = "client_id")
+
     private ClientEntity clientEntity;
 
 

@@ -8,7 +8,9 @@ import fr.uga.l3miage.integrator.repositories.ClientRepository;
 import fr.uga.l3miage.integrator.repositories.CommandeRepository;
 import fr.uga.l3miage.integrator.responses.CommandeResponseDTO;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.context.annotation.DependsOn;
+
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -29,6 +31,9 @@ import java.util.regex.Pattern;
 
 @Component
 @RequiredArgsConstructor
+
+
+
 @DependsOn("importClientsDepuisCSV")
 
 public class CommandeComponent {
@@ -114,6 +119,7 @@ public class CommandeComponent {
         } else {
             System.err.println("Client not found with email : " + email);
         }
+
         return commande;
     }
 

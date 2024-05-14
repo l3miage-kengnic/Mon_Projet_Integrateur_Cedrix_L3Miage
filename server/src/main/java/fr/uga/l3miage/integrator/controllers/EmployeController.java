@@ -2,6 +2,7 @@ package fr.uga.l3miage.integrator.controllers;
 
 import fr.uga.l3miage.integrator.endpoints.EmployeEndPoints;
 import fr.uga.l3miage.integrator.enums.Emploi;
+import fr.uga.l3miage.integrator.requests.EmployeCreationRequest;
 import fr.uga.l3miage.integrator.responses.EmployeResponseDTO;
 import fr.uga.l3miage.integrator.services.EmployeService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Set;
@@ -85,7 +87,6 @@ public class EmployeController implements EmployeEndPoints {
         return employeService.getEmployesByEmploi(emploi);
     }*/
     @Override
-    @GetMapping("/{emploi}")
     public Set<EmployeResponseDTO> getEmployesByRole(@PathVariable("emploi") String emploi) {
         Emploi role;
         switch (emploi.toLowerCase()) {
@@ -100,6 +101,14 @@ public class EmployeController implements EmployeEndPoints {
         }
         return employeService.getEmployesByEmploi(role);
     }
+
+
+    @Override
+    public EmployeResponseDTO creatEmploye(@RequestBody EmployeCreationRequest employeCreationRequest){
+        return employeService.creatEmploye(employeCreationRequest);
+    }
+
+
 
 }
 

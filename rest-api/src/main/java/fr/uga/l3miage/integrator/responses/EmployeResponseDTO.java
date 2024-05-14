@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 @Schema(name = "EmployeResponseDTO", description = "Employe response")
 //@Builder
 public class EmployeResponseDTO {
@@ -26,8 +27,8 @@ public class EmployeResponseDTO {
 
     @Schema(description = "Emploi ou rôle de l'employé")
     private Emploi emploi;
-    @Schema(description = "Photo")
-    private String photo;
+    /****@Schema(description = "Photo")
+    private String photo;  pas besoin de cet attribut**/
     @Schema(description = "Entrepôt associé à l'employé")
     private String entrepot; // Stocker l'ID ou le nom de l'entrepôt
 }

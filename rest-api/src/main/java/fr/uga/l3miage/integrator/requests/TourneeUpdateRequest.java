@@ -13,5 +13,10 @@ public class TourneeUpdateRequest {
         private Double montant;
 
         private Integer tdmTheorique;
+
+        private String nom;
+        private String description;
+
 }
+
 

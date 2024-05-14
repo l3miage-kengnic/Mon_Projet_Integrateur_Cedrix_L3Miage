@@ -4,7 +4,9 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;  // Validation des chaînes non vides
 import javax.validation.constraints.NotNull;  // Validation des valeurs non nulles
+
 import java.util.Date;
+
 
 @Data
 public class TourneeCreationRequest {
@@ -12,6 +14,9 @@ public class TourneeCreationRequest {
 
     private String nom;
     private String description;
+
+    // Ajoutez d'autres champs pour la mise à jour de la tournée
+
 /*
 
     @NotBlank
@@ -37,4 +42,8 @@ public class TourneeCreationRequest {
 
     @NotBlank
     private String journeeReference;  // Référence de la journée associée*/
+
 }
+
+
+

@@ -1,6 +1,8 @@
 package fr.uga.l3miage.integrator.mappers;
 
 import fr.uga.l3miage.integrator.models.EmployeEntity;
+import fr.uga.l3miage.integrator.models.TourneeEntity;
+import fr.uga.l3miage.integrator.requests.EmployeCreationRequest;
 import fr.uga.l3miage.integrator.responses.EmployeResponseDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -39,7 +41,7 @@ import org.mapstruct.Mapping;
 import fr.uga.l3miage.integrator.models.EmployeEntity;
 import fr.uga.l3miage.integrator.responses.EmployeResponseDTO;
 
-@Mapper(componentModel = "spring")
+@Mapper
 public interface EmployeMapper {
 
     // Convertir EmployeEntity en EmployeResponseDTO
@@ -49,7 +51,7 @@ public interface EmployeMapper {
     @Mapping(source = "nom", target = "nom")
     @Mapping(source = "telephone", target = "telephone")
     @Mapping(source = "emploi", target = "emploi")
-    @Mapping(source = "photo", target = "photo")
+    /*** @Mapping(source = "photo", target = "photo") ***/
     @Mapping(source = "entrepotEntity.name", target = "entrepot") // Correction du nom
     EmployeResponseDTO entityToDto(EmployeEntity employeEntity);
 
@@ -60,7 +62,15 @@ public interface EmployeMapper {
     @Mapping(source = "nom", target = "nom")
     @Mapping(source = "telephone", target = "telephone")
     @Mapping(source = "emploi", target = "emploi")
-    @Mapping(source = "photo", target = "photo")
+    /**@Mapping(source = "photo", target = "photo") ***/
     @Mapping(source = "entrepot", target = "entrepotEntity.name") // Correction du nom
     EmployeEntity dtoToEntity(EmployeResponseDTO employeResponseDTO);
+
+
+    @Mapping(target="tourneeEntities", source ="tournees")
+    EmployeEntity requestToEntity(EmployeCreationRequest employeCreationRequest);
+
+    @Mapping(target = "TourneeEntity.reference")
+    TourneeEntity stringToEntiy(String reference);
+
 }

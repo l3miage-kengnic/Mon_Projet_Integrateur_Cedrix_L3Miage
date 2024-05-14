@@ -1,5 +1,6 @@
 package fr.uga.l3miage.integrator.endpoints;
 
+
 import fr.uga.l3miage.integrator.requests.JourneeCreationRequest;
 import fr.uga.l3miage.integrator.requests.JourneeUpdateRequest;
 import fr.uga.l3miage.integrator.responses.JourneeResponseDTO;
@@ -7,6 +8,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,15 +36,19 @@ public interface JourneeEndpoint {
             responseCode = "201",
             description = "Journée créée avec succès"
     )
-    @PostMapping
-    ResponseEntity<Void> createJournee(@RequestBody JourneeCreationRequest creationRequest);
+    @PostMapping("/create")
+    @ResponseStatus(HttpStatus.CREATED)
+    void createJournee(@RequestBody JourneeCreationRequest creationRequest);
 
     @Operation(description = "Mettre à jour une journée")
     @ApiResponse(
             responseCode = "200",
             description = "Journée mise à jour avec succès"
     )
-    @PutMapping("/{reference}")
+    //@PutMapping("/{reference}")
+    @PutMapping("/update/{reference}")  // c'est mieux le chemin "/update/{reference}"
+    @ResponseStatus(HttpStatus.ACCEPTED)
     ResponseEntity<Void> updateJournee(@PathVariable("reference") String reference,
                                        @RequestBody JourneeUpdateRequest updateRequest);
 }
+

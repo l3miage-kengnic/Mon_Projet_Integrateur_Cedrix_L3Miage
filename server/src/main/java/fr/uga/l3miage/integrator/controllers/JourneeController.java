@@ -34,9 +34,9 @@ public class JourneeController implements JourneeEndpoint {
     }
 
     @Override
-    public ResponseEntity<Void> createJournee(JourneeCreationRequest creationRequest) {
+    public void createJournee(JourneeCreationRequest creationRequest) {
         journeeService.createJournee(creationRequest);
-        return ResponseEntity.status(201).build();
+        //return ResponseEntity.status(201).build(); ne doit pas toujours retourner ça
     }
 
     @Override

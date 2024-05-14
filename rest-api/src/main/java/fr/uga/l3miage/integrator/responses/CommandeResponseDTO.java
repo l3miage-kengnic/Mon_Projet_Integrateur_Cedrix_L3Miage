@@ -3,12 +3,14 @@ package fr.uga.l3miage.integrator.responses;
 import fr.uga.l3miage.integrator.DataType.Adresse;
 import fr.uga.l3miage.integrator.enums.EtatsDeCommande;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
 import lombok.Data;
 
 
 import java.util.Date;
 
 @Data
+@Builder //Builder ajouté
 @Schema(name = "CommandeResponseDTO", description = "Commande response")
 public class CommandeResponseDTO {
     private String reference;
@@ -24,11 +26,10 @@ public class CommandeResponseDTO {
     private int dureeDeLivraison;
 
     //private Adresse adresseClient; // Nouveau champ
+
     //private String clientEmail;
 
     private ClientResponseDTO client; // Ajouté ici
-
-
 
 
 }
