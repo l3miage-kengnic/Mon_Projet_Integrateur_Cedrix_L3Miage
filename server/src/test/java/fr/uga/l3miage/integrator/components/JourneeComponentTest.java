@@ -36,6 +36,22 @@ public class JourneeComponentTest {
         Optional<JourneeEntity> result = journeeComponent.getJournee("aaa");
         //then
         OptionalAssert<JourneeEntity> equalTo = assertThat(result).isEqualTo(journeeEntity);
+    }
 
+    @Test
+    void creatJourneeTest(){
+        //Given
+        JourneeEntity journeeEntity = JourneeEntity
+                .builder()
+                .reference("aaa")
+                .build();
+        //Mock: uniquement lorsque la requete journeeRepository.save(journeeEntity) est faite, renvoyer journeeEntity
+        when(journeeRepository.save(journeeEntity)).thenReturn(journeeEntity);
+        //when
+        JourneeEntity result = journeeComponent.createJournee(journeeEntity); // enregistrer en BD la nouvelle JourneeEntity
+          //une implémentation juste de journeeComponent.createJournee(journeeEntity) doit faire appèle à journeeRepository.save(journeeEntity)
+        //then
+        assertThat(result).isEqualTo(journeeEntity);
+          //si la méthode journeeComponent.createJournee(journeeEntity) est bien implémenter, elle doit retourner journeeEntity
     }
 }

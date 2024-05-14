@@ -3,6 +3,7 @@ package fr.uga.l3miage.integrator.services;
 import fr.uga.l3miage.integrator.components.JourneeComponent;
 import fr.uga.l3miage.integrator.mappers.JourneeMapper;
 import fr.uga.l3miage.integrator.models.JourneeEntity;
+import fr.uga.l3miage.integrator.requests.JourneeCreationRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -25,7 +26,7 @@ public class JourneeServiceTest {
     JourneeMapper journeeMapper;
 
     @Test
-    void getJournee(){  //"test à revoir, car selon moi un DTO doit ètre renvoyé par le Service, et non un Entity": Cedrix
+    void getJourneeTest(){  //"test à revoir, car selon moi un DTO doit ètre renvoyé par le Service, et non un Entity": Cedrix
         //Given
         Optional<JourneeEntity> journeeEntity = Optional.ofNullable(JourneeEntity
                 .builder()
@@ -37,4 +38,22 @@ public class JourneeServiceTest {
         //then
         assertThat(result).isEqualTo(journeeEntity);
     }
+
+
+    @Test
+    void creatJournee(){
+        //Given
+        JourneeCreationRequest journeeCreationRequest = JourneeCreationRequest
+                .builder()
+                .reference("aaa")
+                .build();
+
+        JourneeEntity journeeEntity = journeeMapper.createRequestToEntity(journeeCreationRequest);
+        when(journeeComponent.createJournee(journeeEntity)).thenReturn(journeeEntity);
+        //when
+        JourneeEntity result = journeeService.createJournee(journeeCreationRequest);
+        //then
+        assertThat(result).isEqualTo(journeeEntity);
+    }
+
 }

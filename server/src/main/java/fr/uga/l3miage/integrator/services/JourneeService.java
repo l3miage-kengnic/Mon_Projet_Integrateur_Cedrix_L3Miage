@@ -26,8 +26,12 @@ public class JourneeService {
     }
 
     public JourneeEntity createJournee(JourneeCreationRequest request) {
-        JourneeEntity journeeEntity = journeeMapper.createRequestToEntity(request);
-        return journeeRepository.save(journeeEntity);
+        /*** JourneeEntity journeeEntity = journeeMapper.createRequestToEntity(request);
+        return journeeRepository.save(journeeEntity);  Normalement, c'est juste journeeComponent qui doit etre appelé
+          et le traitement va continuer dans les couches inférieures ***/
+
+        JourneeEntity journeeEntity = journeeComponent.createJournee( journeeMapper.createRequestToEntity(request));
+        return journeeEntity;
     }
 
     public Optional<JourneeEntity> updateJournee(String reference, JourneeUpdateRequest request) {
