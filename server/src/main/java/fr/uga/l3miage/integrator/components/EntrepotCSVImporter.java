@@ -127,7 +127,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
                 System.out.println("Warehouse added: " + fields[0]); // Add a log for tracking
 
-                entrepotRepository.save(entrepot); // Save the warehouse  **/
+                entrepotRepository.save(entrepot); // Save the warehouse
 
             }
         } catch (IOException e) {
@@ -141,5 +141,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
     }
 
-}
-
+}                                           *****/

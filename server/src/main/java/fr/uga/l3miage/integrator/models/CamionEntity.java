@@ -12,6 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder  // Builder ajouté ici
 public class CamionEntity {
     @Id
     private String immatriculation;

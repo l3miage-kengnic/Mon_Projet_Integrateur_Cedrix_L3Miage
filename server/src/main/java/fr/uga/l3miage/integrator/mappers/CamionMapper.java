@@ -4,7 +4,7 @@ import fr.uga.l3miage.integrator.models.CamionEntity;
 import fr.uga.l3miage.integrator.responses.CamionResponseDTO;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
+@Mapper
 public interface CamionMapper {
 
     CamionResponseDTO entityToDto(CamionEntity entity);
