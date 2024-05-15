@@ -1,6 +1,8 @@
 package fr.uga.l3miage.integrator.services;
 
 import fr.uga.l3miage.integrator.components.JourneeComponent;
+import fr.uga.l3miage.integrator.exceptions.rest.NotFoundEntityRestException;
+import fr.uga.l3miage.integrator.exceptions.technical.NotFoundJourneeEntityException;
 import fr.uga.l3miage.integrator.mappers.JourneeMapper;
 import fr.uga.l3miage.integrator.models.JourneeEntity;
 import fr.uga.l3miage.integrator.repositories.JourneeRepository;
@@ -21,8 +23,12 @@ public class JourneeService {
 
     //"à revoir, car selon moi un DTO doit ètre renvoyé par le Service, et non un Entity": Cedrix
     public Optional<JourneeEntity> getJournee(String reference) {
-        //return journeeRepository.findById(reference);
-        return  journeeComponent.getJournee(reference);
+        try {
+            //return journeeRepository.findById(reference);
+            return  journeeComponent.getJournee(reference);
+        }catch (NotFoundJourneeEntityException e){
+            throw new NotFoundEntityRestException(e.getMessage());
+        }
     }
 
     public JourneeEntity createJournee(JourneeCreationRequest request) {
@@ -34,12 +40,11 @@ public class JourneeService {
         return journeeEntity;
     }
 
-    public Optional<JourneeEntity> updateJournee(String reference, JourneeUpdateRequest request) {
-        Optional<JourneeEntity> optionalJourneeEntity = journeeRepository.findById(reference);
-        if (optionalJourneeEntity.isPresent()) {
+    public Optional<JourneeEntity> updateJournee(String reference, JourneeUpdateRequest request) throws NotFoundEntityRestException {
+
+        try {
             JourneeEntity updatedEntity = journeeMapper.updateEntityFromRequest( request);
-            journeeRepository.save(updatedEntity);
-        }
-        return optionalJourneeEntity;
+            return journeeComponent.updateJournee(reference, updatedEntity);
+        }catch (NotFoundJourneeEntityException e){return Optional.empty();}
     }
 }

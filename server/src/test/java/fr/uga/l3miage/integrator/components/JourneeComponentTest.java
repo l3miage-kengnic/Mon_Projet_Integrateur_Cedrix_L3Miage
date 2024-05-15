@@ -1,8 +1,11 @@
 package fr.uga.l3miage.integrator.components;
 
+import fr.uga.l3miage.integrator.exceptions.technical.NotFoundJourneeEntityException;
 import fr.uga.l3miage.integrator.models.JourneeEntity;
 import fr.uga.l3miage.integrator.repositories.JourneeRepository;
+import fr.uga.l3miage.integrator.requests.JourneeUpdateRequest;
 import org.assertj.core.api.OptionalAssert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -22,8 +25,23 @@ public class JourneeComponentTest {
     @MockBean
     JourneeRepository journeeRepository;
 
+
     @Test
-    void getJourneeByReferenceTest(){
+    void getJourneeNotFoundTest(){
+        RuntimeException exception = new RuntimeException("");
+        JourneeEntity journeeEntity = JourneeEntity
+                .builder()
+                .reference("bbb")
+                .build();
+
+        when(journeeRepository.findById("aaa")).thenThrow(exception);
+        Assertions.assertThrows(NotFoundJourneeEntityException.class, ()->journeeComponent.getJournee("aaa"));
+        Assertions.assertThrows(RuntimeException.class, ()->journeeComponent.updateJournee("aaa", journeeEntity));
+    }
+
+
+    @Test
+    void getJourneeByReferenceTest() throws NotFoundJourneeEntityException {
         //Given
         JourneeEntity journeeEntity = JourneeEntity
                 .builder()
@@ -36,6 +54,7 @@ public class JourneeComponentTest {
         Optional<JourneeEntity> result = journeeComponent.getJournee("aaa");
         //then
         OptionalAssert<JourneeEntity> equalTo = assertThat(result).isEqualTo(journeeEntity);
+        Assertions.assertDoesNotThrow(()->journeeComponent.getJournee("aaa"));
     }
 
     @Test
@@ -57,7 +76,7 @@ public class JourneeComponentTest {
 
 
     @Test
-    void updateJourneeTest(){
+    void updateJourneeTest() throws NotFoundJourneeEntityException{
         //Given
         Optional<JourneeEntity> journeeEntity = Optional.ofNullable(JourneeEntity
                 .builder()
@@ -85,6 +104,7 @@ public class JourneeComponentTest {
         Optional<JourneeEntity> result = journeeComponent.updateJournee(reference, journeeEntity1);
         //then
         assertThat(result).isEqualTo(journeeEntityExp);
+        Assertions.assertDoesNotThrow(()->journeeComponent.updateJournee(reference, journeeEntity1));
     }
 
 

@@ -1,6 +1,7 @@
 package fr.uga.l3miage.integrator.controllers;
 
 import fr.uga.l3miage.integrator.components.JourneeComponent;
+import fr.uga.l3miage.integrator.exceptions.technical.NotFoundJourneeEntityException;
 import fr.uga.l3miage.integrator.mappers.JourneeMapper;
 import fr.uga.l3miage.integrator.models.JourneeEntity;
 import fr.uga.l3miage.integrator.repositories.JourneeRepository;
@@ -45,7 +46,7 @@ public class JourneeControllerTest {
     }
 
     @Test
-    void getJourneeTest(){
+    void getJourneeTest() throws NotFoundJourneeEntityException {
 
         final HttpHeaders headers = new HttpHeaders();
 
@@ -84,7 +85,7 @@ public class JourneeControllerTest {
 
 
     @Test
-    void updateJourneeTest(){
+    void updateJourneeTest() throws NotFoundJourneeEntityException{
         final HttpHeaders headers = new HttpHeaders();
 
         final JourneeUpdateRequest request = JourneeUpdateRequest

@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.util.UUID;
 
@@ -16,6 +17,8 @@ import java.util.UUID;
  *     <li>{@link SpringBootApplication} permet de dire à spring que cette classe est le run de l'application</li>
  * </ul>groupe
  */
+
+
 @SpringBootApplication
 public class IntegratorProjectSpringApplication {
 

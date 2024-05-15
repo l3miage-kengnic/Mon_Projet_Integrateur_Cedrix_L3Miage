@@ -1,9 +1,12 @@
 package fr.uga.l3miage.integrator.services;
 
 import fr.uga.l3miage.integrator.components.JourneeComponent;
+import fr.uga.l3miage.integrator.exceptions.rest.NotFoundEntityRestException;
+import fr.uga.l3miage.integrator.exceptions.technical.NotFoundJourneeEntityException;
 import fr.uga.l3miage.integrator.mappers.JourneeMapper;
 import fr.uga.l3miage.integrator.models.JourneeEntity;
 import fr.uga.l3miage.integrator.requests.JourneeCreationRequest;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -17,7 +20,7 @@ import static org.mockito.Mockito.*;
 
 @AutoConfigureTestDatabase
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-public class JourneeServiceTest {
+public class JourneeServiceTest  {
     @Autowired
     JourneeService journeeService;
     @MockBean
@@ -25,8 +28,17 @@ public class JourneeServiceTest {
     @SpyBean
     JourneeMapper journeeMapper;
 
+
     @Test
-    void getJourneeTest(){  //"test à revoir, car selon moi un DTO doit ètre renvoyé par le Service, et non un Entity": Cedrix
+    void getJourneeNotFoundTest() throws NotFoundJourneeEntityException{
+        when(journeeComponent.getJournee("aaa")).thenThrow(new NotFoundJourneeEntityException("Aucune journée trouvée"));
+        Assertions.assertThrows(NotFoundEntityRestException.class, ()->journeeService.getJournee("aaa"));
+    }
+
+
+
+    @Test
+    void getJourneeTest() throws NotFoundJourneeEntityException {  //"test à revoir, car selon moi un DTO doit ètre renvoyé par le Service, et non un Entity": Cedrix
         //Given
         Optional<JourneeEntity> journeeEntity = Optional.ofNullable(JourneeEntity
                 .builder()
@@ -37,6 +49,7 @@ public class JourneeServiceTest {
         Optional<JourneeEntity> result = journeeService.getJournee("aaa");
         //then
         assertThat(result).isEqualTo(journeeEntity);
+        Assertions.assertDoesNotThrow(()->journeeService.getJournee("aaa"));
     }
 
 
