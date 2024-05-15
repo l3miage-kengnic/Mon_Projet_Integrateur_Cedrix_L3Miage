@@ -3,6 +3,8 @@ package fr.uga.l3miage.integrator.services;
 import fr.uga.l3miage.integrator.components.CommandeComponent;
 import fr.uga.l3miage.integrator.enums.Emploi;
 import fr.uga.l3miage.integrator.enums.EtatsDeCommande;
+import fr.uga.l3miage.integrator.exceptions.technical.NotFoundCamionEntityException;
+import fr.uga.l3miage.integrator.exceptions.technical.NotFoundCommandeEntityException;
 import fr.uga.l3miage.integrator.mappers.CommandeMapper;
 import fr.uga.l3miage.integrator.models.CommandeEntity;
 import fr.uga.l3miage.integrator.repositories.CommandeRepository;
@@ -38,8 +40,12 @@ public class CommandeServiceTest {
 
 
 
+
+
+
+
     @Test
-    void getAllCommandesTest(){
+    void getAllCommandesTest() throws NotFoundCommandeEntityException {
         //Given
         CommandeResponseDTO commandeResponseDTO = CommandeResponseDTO
                 .builder()

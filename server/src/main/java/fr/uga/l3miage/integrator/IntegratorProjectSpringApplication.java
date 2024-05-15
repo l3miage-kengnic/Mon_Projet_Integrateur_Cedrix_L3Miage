@@ -14,7 +14,7 @@ import java.util.UUID;
  * Les Annotations :
  * <ul>
  *     <li>{@link SpringBootApplication} permet de dire à spring que cette classe est le run de l'application</li>
- * </ul>
+ * </ul>groupe
  */
 @SpringBootApplication
 public class IntegratorProjectSpringApplication {

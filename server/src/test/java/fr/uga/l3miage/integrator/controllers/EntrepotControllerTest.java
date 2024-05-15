@@ -1,6 +1,7 @@
 package fr.uga.l3miage.integrator.controllers;
 
 import fr.uga.l3miage.integrator.components.EntrepotComponent;
+import fr.uga.l3miage.integrator.exceptions.technical.NotFoundEntrepotEntityException;
 import fr.uga.l3miage.integrator.repositories.EntrepotRepository;
 import fr.uga.l3miage.integrator.responses.EntrepotResponseDTO;
 import fr.uga.l3miage.integrator.services.EntrepotService;
@@ -40,7 +41,7 @@ public class EntrepotControllerTest {
     }
 
     @Test
-    void getAllEntrepots(){
+    void getAllEntrepots() throws NotFoundEntrepotEntityException {
         final HttpHeaders headers = new HttpHeaders();
 
         ParameterizedTypeReference<List<EntrepotResponseDTO>> responseType = new ParameterizedTypeReference<List<EntrepotResponseDTO>>() {};

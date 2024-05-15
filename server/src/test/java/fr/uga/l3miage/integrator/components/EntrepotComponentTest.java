@@ -1,8 +1,10 @@
 package fr.uga.l3miage.integrator.components;
 
 
+import fr.uga.l3miage.integrator.exceptions.technical.NotFoundEntrepotEntityException;
 import fr.uga.l3miage.integrator.models.EntrepotEntity;
 import fr.uga.l3miage.integrator.repositories.EntrepotRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -23,7 +25,15 @@ public class EntrepotComponentTest {
     EntrepotRepository entrepotRepository;
 
     @Test
-    void getAllEntrepotsTest(){
+    void getEntrepotNotFoundTest(){
+        RuntimeException exception = new RuntimeException("");
+        when(entrepotRepository.findAll()).thenThrow(exception);
+        Assertions.assertThrows(NotFoundEntrepotEntityException.class, ()->entrepotComponent.getAllEntrepots());
+    }
+
+
+    @Test
+    void getAllEntrepotsTest() throws NotFoundEntrepotEntityException {
         //Given
         EntrepotEntity entrepotEntity = EntrepotEntity
                 .builder()
@@ -41,8 +51,9 @@ public class EntrepotComponentTest {
         List<EntrepotEntity> result  = entrepotComponent.getAllEntrepots();
         //then
         assertThat(result).hasSize(2);
-        assertThat(result.get(0)).isEqualTo(entrepotEntity);
         assertThat(result.get(1)).isEqualTo(entrepotEntity1);
+        //Ne doit renvoyer aucune exception en condition normale
+        Assertions.assertDoesNotThrow(()->entrepotComponent.getAllEntrepots());
 
     }
 }

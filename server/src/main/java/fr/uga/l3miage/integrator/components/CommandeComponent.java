@@ -1,6 +1,8 @@
 package fr.uga.l3miage.integrator.components;
 
 import fr.uga.l3miage.integrator.enums.EtatsDeCommande;
+import fr.uga.l3miage.integrator.exceptions.rest.NotFoundEntityRestException;
+import fr.uga.l3miage.integrator.exceptions.technical.NotFoundCommandeEntityException;
 import fr.uga.l3miage.integrator.models.ClientEntity;
 import fr.uga.l3miage.integrator.models.CommandeEntity;
 import fr.uga.l3miage.integrator.models.LivraisonEntity;
@@ -40,8 +42,13 @@ public class CommandeComponent {
     private final CommandeRepository commandeRepository;
     private final ClientRepository clientRepository;
 
-    public List<CommandeEntity> getAllCommandes() {
-        return commandeRepository.findAll();
+    public List<CommandeEntity> getAllCommandes() throws NotFoundCommandeEntityException{
+
+        try {
+            return commandeRepository.findAll();
+        }catch (Exception e){
+            throw new NotFoundCommandeEntityException("Aucune Commande trouvée");
+        }
     }
 
     public CommandeEntity getCommandeByReference(String reference) {

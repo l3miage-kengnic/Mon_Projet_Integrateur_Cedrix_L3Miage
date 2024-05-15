@@ -1,9 +1,12 @@
 package fr.uga.l3miage.integrator.services;
 
 import fr.uga.l3miage.integrator.components.CamionComponent;
+import fr.uga.l3miage.integrator.exceptions.rest.NotFoundEntityRestException;
+import fr.uga.l3miage.integrator.exceptions.technical.NotFoundCamionEntityException;
 import fr.uga.l3miage.integrator.mappers.CamionMapper;
 import fr.uga.l3miage.integrator.models.CamionEntity;
 import fr.uga.l3miage.integrator.responses.CamionResponseDTO;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -27,8 +30,15 @@ public class CamionServiceTest {
     @SpyBean
     private CamionMapper camionMapper;
 
+
+    @Test // pour verifier si une exception Rest est renvoyé par la couche Service, après avoir reçu une exception de la couche Component
+    void getCamionsNotFoundTest() throws NotFoundCamionEntityException{
+        when(camionComponent.getAllCamions()).thenThrow(new NotFoundCamionEntityException("Aucun camion trouvé"));
+        Assertions.assertThrows(NotFoundEntityRestException.class, ()-> camionService.getAllCamions());
+    }
+
     @Test
-    void getAllCamionsTest(){
+    void getAllCamionsTest() throws NotFoundCamionEntityException {
         //Given
         CamionEntity camionEntity = CamionEntity
                 .builder()
@@ -48,6 +58,7 @@ public class CamionServiceTest {
         assertThat(result.get(0)).isEqualTo( camionMapper.entityToDto(camionEntity));
         assertThat(result.get(1)).isEqualTo( camionMapper.entityToDto(camionEntity1));
 
+        Assertions.assertDoesNotThrow(()->camionService.getAllCamions());
 
     }
 }

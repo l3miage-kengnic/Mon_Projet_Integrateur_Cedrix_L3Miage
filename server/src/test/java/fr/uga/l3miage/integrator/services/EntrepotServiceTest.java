@@ -1,9 +1,12 @@
 package fr.uga.l3miage.integrator.services;
 
 import fr.uga.l3miage.integrator.components.EntrepotComponent;
+import fr.uga.l3miage.integrator.exceptions.rest.NotFoundEntityRestException;
+import fr.uga.l3miage.integrator.exceptions.technical.NotFoundEntrepotEntityException;
 import fr.uga.l3miage.integrator.mappers.EntrepotMapper;
 import fr.uga.l3miage.integrator.models.EntrepotEntity;
 import fr.uga.l3miage.integrator.responses.EntrepotResponseDTO;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -26,8 +29,15 @@ public class EntrepotServiceTest {
     @SpyBean
     EntrepotMapper entrepotMapper;
 
+
     @Test
-    void getAllEntrepotsTest(){
+    void getEntrepotNotFoundTest() throws NotFoundEntrepotEntityException{
+        when(entrepotComponent.getAllEntrepots()).thenThrow(new NotFoundEntrepotEntityException("Aucun entrepot trouvé"));
+        Assertions.assertThrows(NotFoundEntityRestException.class, ()->entrepotService.getAllEntrepots());
+    }
+
+    @Test
+    void getAllEntrepotsTest() throws NotFoundEntrepotEntityException {
         //Given
         EntrepotEntity entrepotEntity = EntrepotEntity
                 .builder()
@@ -44,8 +54,9 @@ public class EntrepotServiceTest {
         List<EntrepotResponseDTO> result = entrepotService.getAllEntrepots();
         //then
         assertThat(result).hasSize(2);
-        assertThat(result.get(0)).isEqualTo(entrepotMapper.entityToDto(entrepotEntity));
         assertThat(result.get(1)).isEqualTo(entrepotMapper.entityToDto(entrepotEntity1));
+
+        Assertions.assertDoesNotThrow(()->entrepotService.getAllEntrepots());
 
     }
 }

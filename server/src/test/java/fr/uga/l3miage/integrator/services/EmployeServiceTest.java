@@ -2,10 +2,13 @@ package fr.uga.l3miage.integrator.services;
 
 import fr.uga.l3miage.integrator.components.EmployeComponent;
 import fr.uga.l3miage.integrator.enums.Emploi;
+import fr.uga.l3miage.integrator.exceptions.rest.NotFoundEntityRestException;
+import fr.uga.l3miage.integrator.exceptions.technical.NotFoundEmployeEntityException;
 import fr.uga.l3miage.integrator.mappers.EmployeMapper;
 import fr.uga.l3miage.integrator.models.EmployeEntity;
 import fr.uga.l3miage.integrator.repositories.EmployeRepository;
 import fr.uga.l3miage.integrator.responses.EmployeResponseDTO;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -27,8 +30,19 @@ public class EmployeServiceTest {
     @SpyBean
     private EmployeMapper employeMapper;
 
+
     @Test
-    void getEmployeByEmploisTest(){
+    void getEmployeNotFoundTest() throws NotFoundEmployeEntityException{
+        when(employeComponent.findByEmploi(Emploi.PRODEUR)).thenThrow(new NotFoundEntityRestException("Aucun employé trouvé"));
+        when(employeComponent.getAllEmployes()).thenThrow(new NotFoundEntityRestException("Aucun employé trouvé"));
+
+        Assertions.assertThrows(NotFoundEntityRestException.class, ()-> employeService.getEmployesByEmploi(Emploi.PRODEUR));
+        Assertions.assertThrows(NotFoundEntityRestException.class, ()->employeService.getAllEmployes());
+    }
+
+
+    @Test
+    void getEmployeByEmploisTest() throws NotFoundEmployeEntityException {
 
         EmployeResponseDTO employeResponseDTO = EmployeResponseDTO
                 .builder()
@@ -63,6 +77,8 @@ public class EmployeServiceTest {
         //then
         assertThat(result2).hasSize(1);
         assertThat(result2).contains(employeResponseDTO2);
+
+        Assertions.assertDoesNotThrow(()->employeService.getEmployesByEmploi(Emploi.LIVREUR));
 
     }
 

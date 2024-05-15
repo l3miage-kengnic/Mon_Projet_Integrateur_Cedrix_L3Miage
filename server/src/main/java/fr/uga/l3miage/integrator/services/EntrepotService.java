@@ -1,6 +1,8 @@
 package fr.uga.l3miage.integrator.services;
 
 import fr.uga.l3miage.integrator.components.EntrepotComponent;
+import fr.uga.l3miage.integrator.exceptions.rest.NotFoundEntityRestException;
+import fr.uga.l3miage.integrator.exceptions.technical.NotFoundEntrepotEntityException;
 import fr.uga.l3miage.integrator.mappers.EntrepotMapper;
 import fr.uga.l3miage.integrator.responses.EntrepotResponseDTO;
 import lombok.RequiredArgsConstructor;
@@ -25,17 +27,21 @@ public class EntrepotService {
     }*/
 
     public List<EntrepotResponseDTO> getAllEntrepots() {
-        return entrepotComponent.getAllEntrepots()
-                .stream()
-                .map(entrepotMapper::entityToDto) // Le mapper inclut maintenant l'employé
-                .collect(Collectors.toList());
+        try {
 
-        /**
-        public List<EntrepotResponseDTO> getAllEntrepots () {
             return entrepotComponent.getAllEntrepots()
                     .stream()
-                    .map(entrepotMapper::entityToDto)
-                    .collect(Collectors.toList());   **/
+                    .map(entrepotMapper::entityToDto) // Le mapper inclut maintenant l'employé
+                    .collect(Collectors.toList());
+            /**
+             public List<EntrepotResponseDTO> getAllEntrepots () {
+             return entrepotComponent.getAllEntrepots()
+             .stream()
+             .map(entrepotMapper::entityToDto)
+             .collect(Collectors.toList());   **/
+        }catch (NotFoundEntrepotEntityException e){
+            throw new NotFoundEntityRestException(e.getMessage());
+        }
 
     }
 }

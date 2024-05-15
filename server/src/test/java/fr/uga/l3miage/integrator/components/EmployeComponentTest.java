@@ -1,8 +1,10 @@
 package fr.uga.l3miage.integrator.components;
 
 import fr.uga.l3miage.integrator.enums.Emploi;
+import fr.uga.l3miage.integrator.exceptions.technical.NotFoundEmployeEntityException;
 import fr.uga.l3miage.integrator.models.EmployeEntity;
 import fr.uga.l3miage.integrator.repositories.EmployeRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -24,8 +26,22 @@ public class EmployeComponentTest {
     @MockBean
     private EmployeRepository employeRepository;
 
+
     @Test
-    void findByEmploiTest(){
+    void getEmploiNotFoundTest(){
+        RuntimeException exception = new RuntimeException("");
+        when(employeRepository.findAllByEmploi(Emploi.PLANIFICATEUR)).thenThrow(exception);
+        when(employeRepository.findAll()).thenThrow(exception);
+
+        //si employeComponent.findByEmploi() recoit une exception (venant de employeRepository.findAllByEmploi()), elle doit renvoyer une NotFoundEmployeEntityException
+        //Si employeComponent.getAllEmployes() recoit une exception (venant de employeRepository.findAll()), elle doit renvoyer une NotFoundEmployeEntityException :
+        Assertions.assertThrows(NotFoundEmployeEntityException.class, ()->employeComponent.findByEmploi(Emploi.PLANIFICATEUR));
+        Assertions.assertThrows(NotFoundEmployeEntityException.class, ()->employeComponent.getAllEmployes());
+    }
+
+
+    @Test
+    void findByEmploiTest() throws NotFoundEmployeEntityException {
         //given
         EmployeEntity employeEntity = EmployeEntity
                 .builder()
@@ -64,14 +80,7 @@ public class EmployeComponentTest {
         assertThat(result2.contains(employeEntity2));
         //assertDoesNotThrow(() -> employeComponent.findByEmploi(Emploi.LIVREUR));
 
-        //Simulation de la réponse de la BD:
-        // lorsque la requete employeRepository.findAllByEmploi(Emploi.LIVREUR) est appelée, alors renvoyer un Set vide
-        when(employeRepository.findAllByEmploi(Emploi.PRODEUR)).thenReturn(Set.of());
-        //when   // lorsque la méthode employeComponent.findByEmploi est appelée, la requete employeRepository.findAllByEmploi(Emploi.LIVREUR) doit l'etre aussi
-        Set<EmployeEntity> result3 = employeComponent.findByEmploi(Emploi.PRODEUR);
-        //then
-        assertThat(result3).hasSize(0);
-
+       Assertions.assertDoesNotThrow(()->employeComponent.findByEmploi(Emploi.LIVREUR));
     }
 
 

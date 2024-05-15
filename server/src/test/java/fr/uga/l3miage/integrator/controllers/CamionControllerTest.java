@@ -2,6 +2,7 @@ package fr.uga.l3miage.integrator.controllers;
 
 
 import fr.uga.l3miage.integrator.components.CamionComponent;
+import fr.uga.l3miage.integrator.exceptions.technical.NotFoundCamionEntityException;
 import fr.uga.l3miage.integrator.repositories.CamionRepository;
 import fr.uga.l3miage.integrator.responses.CamionResponseDTO;
 import fr.uga.l3miage.integrator.services.CamionService;
@@ -42,7 +43,7 @@ public class CamionControllerTest {
 
 
     @Test
-    void getAllCamionsTest(){
+    void getAllCamionsTest() throws NotFoundCamionEntityException {
         final HttpHeaders headers = new HttpHeaders();
 
         //sert pour preciser le type de l'objet renvoyé lors de la requete

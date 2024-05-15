@@ -1,4 +1,6 @@
 package fr.uga.l3miage.integrator.services;
+import fr.uga.l3miage.integrator.exceptions.rest.NotFoundEntityRestException;
+import fr.uga.l3miage.integrator.exceptions.technical.NotFoundEmployeEntityException;
 import fr.uga.l3miage.integrator.mappers.EmployeMapper;
 
 
@@ -119,17 +121,25 @@ public class EmployeService {
     private final EmployeMapper employeMapper;
 
     public List<EmployeResponseDTO> getAllEmployes() {
-        return employeComponent.getAllEmployes()
-                .stream()
-                .map(employeMapper::entityToDto)
-                .collect(Collectors.toList());
+        try {
+            return employeComponent.getAllEmployes()
+                    .stream()
+                    .map(employeMapper::entityToDto)
+                    .collect(Collectors.toList());
+        } catch (NotFoundEmployeEntityException e){
+            throw new NotFoundEntityRestException(e.getMessage());
+        }
     }
 
     public Set<EmployeResponseDTO> getEmployesByEmploi(Emploi emploi) {
-        return employeComponent.findByEmploi(emploi)
-                .stream()
-                .map(employeMapper::entityToDto)
-                .collect(Collectors.toSet());
+        try {
+            return employeComponent.findByEmploi(emploi)
+                    .stream()
+                    .map(employeMapper::entityToDto)
+                    .collect(Collectors.toSet());
+        } catch (NotFoundEmployeEntityException e){
+            throw new NotFoundEntityRestException(e.getMessage());
+        }
 
         /*******Set<EmployeResponseDTO> employeResponseDTOSet = Set.of();
          Set<EmployeEntity> employeEntities = employeComponent.findByEmploi(emploi);

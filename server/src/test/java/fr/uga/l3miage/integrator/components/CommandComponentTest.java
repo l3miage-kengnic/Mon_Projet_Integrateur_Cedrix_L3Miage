@@ -1,5 +1,7 @@
 package fr.uga.l3miage.integrator.components;
 
+import fr.uga.l3miage.integrator.exceptions.technical.NotFoundCamionEntityException;
+import fr.uga.l3miage.integrator.exceptions.technical.NotFoundCommandeEntityException;
 import fr.uga.l3miage.integrator.models.CommandeEntity;
 import fr.uga.l3miage.integrator.repositories.CommandeRepository;
 import org.junit.jupiter.api.Test;
@@ -25,7 +27,7 @@ public class CommandComponentTest {
 
 
     @Test
-    void getAllCommandesTest(){
+    void getAllCommandesTest() throws NotFoundCommandeEntityException {
         //Given
         CommandeEntity commandeEntity = CommandeEntity
                 .builder()

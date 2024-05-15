@@ -1,6 +1,8 @@
 package fr.uga.l3miage.integrator.services;
 
 import fr.uga.l3miage.integrator.components.CommandeComponent;
+import fr.uga.l3miage.integrator.exceptions.rest.NotFoundEntityRestException;
+import fr.uga.l3miage.integrator.exceptions.technical.NotFoundCommandeEntityException;
 import fr.uga.l3miage.integrator.mappers.CommandeMapper;
 import fr.uga.l3miage.integrator.models.CommandeEntity;
 import fr.uga.l3miage.integrator.responses.CommandeResponseDTO;
@@ -19,12 +21,18 @@ public class CommandeService {
     private final CommandeComponent commandeComponent;
     private final CommandeMapper commandeMapper;
 
-    public List<CommandeResponseDTO> getAllCommandes() {
-        return commandeComponent.getAllCommandes()
-                .stream()
-                .map(commandeMapper::entityToDto)
-                .collect(Collectors.toList());
+    public List<CommandeResponseDTO> getAllCommandes() throws NotFoundEntityRestException{
+
+        try {
+            return commandeComponent.getAllCommandes()
+                    .stream()
+                    .map(commandeMapper::entityToDto)
+                    .collect(Collectors.toList());
+        }catch (NotFoundCommandeEntityException e){
+            throw new NotFoundEntityRestException(e.getMessage());
+        }
     }
+
 
     public CommandeResponseDTO getCommandeByReference(String reference) {
         CommandeEntity entity = commandeComponent.getCommandeByReference(reference);

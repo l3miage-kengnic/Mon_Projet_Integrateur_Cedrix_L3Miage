@@ -1,13 +1,12 @@
 package fr.uga.l3miage.integrator.components;
 
 import fr.uga.l3miage.integrator.DataType.GeoPosition;
+import fr.uga.l3miage.integrator.exceptions.technical.NotFoundCamionEntityException;
 import fr.uga.l3miage.integrator.models.CamionEntity;
-import fr.uga.l3miage.integrator.models.ClientEntity;
 import fr.uga.l3miage.integrator.models.EntrepotEntity;
 import fr.uga.l3miage.integrator.repositories.CamionRepository;
 import fr.uga.l3miage.integrator.repositories.EntrepotRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -25,9 +24,14 @@ public class CamionComponent {
     private final CamionRepository camionRepository;
     private final EntrepotRepository entrepotRepository;
 
-    public List<CamionEntity> getAllCamions() {
+    public List<CamionEntity> getAllCamions() throws NotFoundCamionEntityException{
 
-        return camionRepository.findAll();
+        try {
+            return camionRepository.findAll();
+        }catch (Exception e){
+            throw new NotFoundCamionEntityException(String.format("Aucun camion trouvé"));
+        }
+
     }
 
 

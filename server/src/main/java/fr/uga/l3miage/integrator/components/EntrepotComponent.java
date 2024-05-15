@@ -2,6 +2,7 @@ package fr.uga.l3miage.integrator.components;
 
 import fr.uga.l3miage.integrator.DataType.Adresse;
 import fr.uga.l3miage.integrator.DataType.GeoPosition;
+import fr.uga.l3miage.integrator.exceptions.technical.NotFoundEntrepotEntityException;
 import fr.uga.l3miage.integrator.models.EmployeEntity;
 import fr.uga.l3miage.integrator.models.EntrepotEntity;
 import fr.uga.l3miage.integrator.repositories.EmployeRepository;
@@ -21,8 +22,12 @@ public class EntrepotComponent {
 
     private final EntrepotRepository entrepotRepository;
 
-    public List<EntrepotEntity> getAllEntrepots() {
-        return entrepotRepository.findAll();
+    public List<EntrepotEntity> getAllEntrepots() throws NotFoundEntrepotEntityException {
+        try {
+            return entrepotRepository.findAll();
+        }catch (Exception e){
+            throw new NotFoundEntrepotEntityException("Aucun entrepot trouvé");
+        }
     }
 
 
