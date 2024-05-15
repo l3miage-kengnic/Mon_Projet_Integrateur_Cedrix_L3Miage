@@ -26,6 +26,7 @@ public class CamionComponent {
     private final EntrepotRepository entrepotRepository;
 
     public List<CamionEntity> getAllCamions() {
+
         return camionRepository.findAll();
     }
 
